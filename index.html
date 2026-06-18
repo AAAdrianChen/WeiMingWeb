@@ -195,43 +195,174 @@
         body.modal-open {
             overflow: hidden;
         }
+
+        section[id] {
+            scroll-margin-top: 80px;
+        }
+
+        .nav-link {
+            color: #57534E;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #2D2926;
+        }
+
+        .nav-link-active {
+            color: #2D2926;
+            font-weight: 700;
+            border-bottom-color: #2D2926;
+        }
+
+        body.mobile-menu-open {
+            overflow: hidden;
+        }
+
+        #mobile-menu-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        #mobile-menu-panel.is-open {
+            max-height: 480px;
+        }
+
+        .nav-link-mobile.nav-link-active {
+            color: #2D2926;
+            font-weight: 700;
+            border-bottom-color: #2D2926;
+        }
+
+        .form-message {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-message.error {
+            color: #ba1a1a;
+        }
+
+        .form-message.success {
+            color: #2D2926;
+        }
+
+        .field-underline {
+            border-bottom: 1px solid #C4C2BE;
+            transition: border-color 0.2s ease;
+        }
+
+        .field-underline:focus-within {
+            border-bottom-color: #2D2926;
+        }
+
+        .field-underline input,
+        .field-underline textarea {
+            display: block;
+            width: 100%;
+            border: 0;
+            background: transparent;
+            padding: 0.5rem 0;
+            box-shadow: none;
+            outline: none;
+            resize: none;
+        }
+
+        .field-underline input:focus,
+        .field-underline textarea:focus {
+            outline: none;
+            box-shadow: none;
+            ring: 0;
+        }
+
+        .field-underline textarea {
+            min-height: 4.5rem;
+            line-height: 1.6;
+        }
+
+        .capability-icon {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .group:hover .capability-icon {
+            background-color: rgba(45, 41, 38, 0.06);
+            border-color: rgba(45, 41, 38, 0.35);
+        }
+
+        .capability-icon .material-symbols-outlined {
+            transition: color 0.3s ease;
+        }
+
+        .group:hover .capability-icon .material-symbols-outlined {
+            color: #2D2926;
+        }
     </style>
 </head>
 
 <body class="bg-background selection:bg-primary selection:text-on-primary">
     <!-- TopNavBar -->
-    <nav class="bg-white/90 top-0 sticky backdrop-blur-md border-b border-primary/5 z-50">
+    <nav class="bg-white/90 top-0 sticky backdrop-blur-md border-b border-primary/5 z-50" id="site-nav">
         <div
             class="flex justify-between items-center w-full px-margin-mobile lg:px-margin-desktop py-4 max-w-container-max mx-auto">
-            <div class="flex items-center gap-10">
-                <div class="flex flex-col">
+            <div class="flex items-center gap-6 lg:gap-10">
+                <a class="flex flex-col hover:opacity-80 transition-opacity" href="#home">
                     <span class="font-display font-bold tracking-tighter text-primary leading-none text-lg">WEIMING
                         AI</span>
                     <span class="text-[10px] text-secondary font-medium tracking-wider mt-1 uppercase">Fuzhou Xunjing
                         Medical Tech</span>
-                </div>
-                <div class="hidden lg:flex items-center gap-8">
-                    <a class="text-primary font-bold border-b-2 border-primary py-1 font-label-sm text-label-sm uppercase tracking-widest cursor-pointer"
-                        href="#">首页</a>
-                    <a class="text-secondary font-medium font-label-sm text-label-sm uppercase tracking-widest cursor-pointer hover:text-primary transition-colors"
+                </a>
+                <div class="hidden lg:flex items-center gap-8" id="desktop-nav">
+                    <a class="nav-link nav-link-active font-label-sm text-label-sm uppercase tracking-widest"
+                        data-nav="home" href="#home">首页</a>
+                    <a class="nav-link font-label-sm text-label-sm uppercase tracking-widest" data-nav="insights"
                         href="#insights">业务结果</a>
-                    <a class="text-secondary font-medium font-label-sm text-label-sm uppercase tracking-widest cursor-pointer hover:text-primary transition-colors"
+                    <a class="nav-link font-label-sm text-label-sm uppercase tracking-widest" data-nav="scenarios"
                         href="#scenarios">案例</a>
-                    <a class="text-secondary font-medium font-label-sm text-label-sm uppercase tracking-widest cursor-pointer hover:text-primary transition-colors"
+                    <a class="nav-link font-label-sm text-label-sm uppercase tracking-widest" data-nav="capabilities"
                         href="#capabilities">技术能力</a>
-                    <a class="text-secondary font-medium font-label-sm text-label-sm uppercase tracking-widest cursor-pointer hover:text-primary transition-colors"
+                    <a class="nav-link font-label-sm text-label-sm uppercase tracking-widest" data-nav="methodology"
                         href="#methodology">方法论</a>
-                    <a class="text-secondary font-medium font-label-sm text-label-sm uppercase tracking-widest cursor-pointer hover:text-primary transition-colors"
+                    <a class="nav-link font-label-sm text-label-sm uppercase tracking-widest" data-nav="about"
                         href="#about">关于</a>
                 </div>
             </div>
-            <button
-                class="bg-primary text-on-primary px-6 py-2.5 rounded-none font-label-md text-label-sm font-bold uppercase tracking-widest hover:bg-primary-variant transition-all">联系我们</button>
+            <div class="flex items-center gap-3">
+                <a class="hidden sm:inline-flex bg-primary text-on-primary px-6 py-2.5 rounded-none font-label-md text-label-sm font-bold uppercase tracking-widest hover:bg-primary-variant transition-all"
+                    href="#contact">联系我们</a>
+                <button aria-expanded="false" aria-label="打开菜单"
+                    class="lg:hidden p-2 border border-primary/10 hover:border-primary transition-colors"
+                    id="mobile-menu-toggle" type="button">
+                    <span class="material-symbols-outlined text-primary" id="mobile-menu-icon">menu</span>
+                </button>
+            </div>
+        </div>
+        <div class="lg:hidden border-t border-primary/5 bg-white/95 backdrop-blur-md" id="mobile-menu-panel">
+            <div class="px-margin-mobile py-6 space-y-1 max-w-container-max mx-auto">
+                <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
+                    data-nav="home" href="#home">首页</a>
+                <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
+                    data-nav="insights" href="#insights">业务结果</a>
+                <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
+                    data-nav="scenarios" href="#scenarios">案例</a>
+                <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
+                    data-nav="capabilities" href="#capabilities">技术能力</a>
+                <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
+                    data-nav="methodology" href="#methodology">方法论</a>
+                <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
+                    data-nav="about" href="#about">关于</a>
+                <a class="block mt-4 bg-primary text-on-primary px-6 py-3 text-center font-label-md text-label-sm font-bold uppercase tracking-widest hover:bg-primary-variant transition-all"
+                    href="#contact">联系我们</a>
+            </div>
         </div>
     </nav>
     <main>
         <!-- Hero Section -->
-        <section
+        <section id="home"
             class="relative min-h-[90vh] flex flex-col justify-center bg-background overflow-hidden border-b border-outline-variant/20">
             <div class="absolute inset-0 z-0">
                 <div class="absolute inset-0 bg-grid opacity-[0.05]"></div>
@@ -247,7 +378,8 @@
                             <h1 class="font-display text-6xl lg:text-8xl text-primary leading-[1.05] tracking-tighter">
                                 <span class="block text-3xl lg:text-5xl font-medium mb-6 text-secondary/60">未名
                                     AI</span><span class="block">我们帮企业把 AI 投入</span><span
-                                    class="block font-black">变成可量化的业务结果</span></h1>
+                                    class="block font-black">变成可量化的业务结果</span>
+                            </h1>
                             <div class="max-w-4xl">
                                 <p class="font-body-lg text-secondary/80 leading-relaxed text-xl">这个业务问题是否值得用 AI 解决？AI
                                     应该放在哪个流程节点？最终应该带来什么结果？</p>
@@ -321,7 +453,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-on-primary/10">
                     <div class="py-8 lg:py-0 lg:px-10 first:pl-0 space-y-6 group">
                         <div
-                            class="w-10 h-10 flex items-center justify-center border transition-all duration-300 border-primary/20 group-hover:bg-primary group-hover:text-on-primary">
+                            class="capability-icon w-10 h-10 flex items-center justify-center border border-primary/20">
                             <span class="material-symbols-outlined text-2xl text-primary">analytics</span>
                         </div>
                         <h3 class="font-headline-md text-lg leading-tight text-primary">处理复杂数据<br />建立业务分析闭环</h3>
@@ -330,7 +462,7 @@
                     </div>
                     <div class="py-8 lg:py-0 lg:px-10 space-y-6 group">
                         <div
-                            class="w-10 h-10 flex items-center justify-center border transition-all duration-300 border-primary/20 group-hover:bg-primary group-hover:text-on-primary">
+                            class="capability-icon w-10 h-10 flex items-center justify-center border border-primary/20">
                             <span class="material-symbols-outlined text-2xl text-primary">monitoring</span>
                         </div>
                         <h3 class="font-headline-md text-lg leading-tight text-primary">让 AI 投入呈现<br />可量化业务结果</h3>
@@ -339,7 +471,7 @@
                     </div>
                     <div class="py-8 lg:py-0 lg:px-10 last:pr-0 space-y-6 group">
                         <div
-                            class="w-10 h-10 flex items-center justify-center border transition-all duration-300 border-primary/20 group-hover:bg-primary group-hover:text-on-primary">
+                            class="capability-icon w-10 h-10 flex items-center justify-center border border-primary/20">
                             <span class="material-symbols-outlined text-2xl text-primary">settings_account_box</span>
                         </div>
                         <h3 class="font-headline-md text-lg leading-tight text-primary">把技术能力转化<br />为真实业务能力</h3>
@@ -857,9 +989,8 @@
                             <h6 class="font-headline-md text-2xl font-black">准备好开始了？</h6>
                             <p class="text-on-primary/50 text-sm">预约专家进行 1:1 业务诊断，共同定义您的 AI 路径。</p>
                         </div>
-                        <button
-                            class="bg-white text-primary px-12 py-4 font-label-md text-xs font-bold uppercase tracking-widest hover:bg-surface-container transition-all shadow-2xl">预定
-                            1:1 诊断</button>
+                        <a class="inline-flex bg-white text-primary px-12 py-4 font-label-md text-xs font-bold uppercase tracking-widest hover:bg-surface-container transition-all shadow-2xl"
+                            href="#contact">预定 1:1 诊断</a>
                     </div>
                 </div>
             </div>
@@ -966,7 +1097,8 @@
                                         <font face="宋体">
                                             等全球顶尖学府的学术与工程复合型人才。我们坚持将国际前沿的数据科学方法论，与严谨的工业级产品工程实践相结合，确保技术投入精准转化为商业价值。
                                         </font>
-                                    </span></p>
+                                    </span>
+                                </p>
                             </div>
                             <p class=""></p>
                         </div>
@@ -1067,30 +1199,34 @@
                     </div>
                     <!-- Right: Form -->
                     <div class="bg-white p-10 lg:p-16 shadow-2xl border border-primary/5">
-                        <form class="space-y-10">
+                        <form class="space-y-10" id="contact-form">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <div class="space-y-2">
                                     <label
                                         class="text-[11px] font-bold text-secondary/60 uppercase tracking-wider">姓名</label>
-                                    <input
-                                        class="w-full border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary bg-transparent placeholder:text-secondary/30"
-                                        placeholder="张先生/女士" type="text" />
+                                    <div class="field-underline">
+                                        <input class="placeholder:text-secondary/30" name="name" placeholder="张先生/女士"
+                                            required type="text" />
+                                    </div>
                                 </div>
                                 <div class="space-y-2">
                                     <label
                                         class="text-[11px] font-bold text-secondary/60 uppercase tracking-wider">公司邮件</label>
-                                    <input
-                                        class="w-full border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary bg-transparent placeholder:text-secondary/30"
-                                        placeholder="name@company.com" type="email" />
+                                    <div class="field-underline">
+                                        <input class="placeholder:text-secondary/30" name="email"
+                                            placeholder="name@company.com" required type="email" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="space-y-2">
                                 <label
                                     class="text-[11px] font-bold text-secondary/60 uppercase tracking-wider">业务需求简述</label>
-                                <textarea
-                                    class="w-full border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary bg-transparent placeholder:text-secondary/30 resize-none"
-                                    placeholder="请简要说明您的挑战" rows="3"></textarea>
+                                <div class="field-underline">
+                                    <textarea class="placeholder:text-secondary/30" name="message"
+                                        placeholder="请简要说明您的挑战" required rows="2"></textarea>
+                                </div>
                             </div>
+                            <p class="form-message hidden" id="contact-form-message" role="status"></p>
                             <button
                                 class="w-full bg-primary text-on-primary py-6 font-bold uppercase tracking-[0.2em] hover:bg-primary-variant transition-all shadow-xl"
                                 type="submit">
@@ -1118,9 +1254,11 @@
                         <div class="space-y-6">
                             <h4 class="text-[10px] font-bold text-on-primary/40 uppercase tracking-widest">探索</h4>
                             <ul class="space-y-4 text-sm text-on-primary/70">
-                                <li><a class="hover:text-on-primary transition-colors" href="#">核心能力</a></li>
-                                <li><a class="hover:text-on-primary transition-colors" href="#">业务场景</a></li>
-                                <li><a class="hover:text-on-primary transition-colors" href="#">工程方法论</a></li>
+                                <li><a class="hover:text-on-primary transition-colors" href="#capabilities">核心能力</a>
+                                </li>
+                                <li><a class="hover:text-on-primary transition-colors" href="#scenarios">业务场景</a></li>
+                                <li><a class="hover:text-on-primary transition-colors" href="#methodology">工程方法论</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="space-y-6">
@@ -1389,8 +1527,150 @@
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal-backdrop.is-open').forEach(modal => closeModal(modal.id));
+                closeMobileMenu();
             }
         });
+
+        const navSectionIds = ['home', 'insights', 'scenarios', 'capabilities', 'methodology', 'about'];
+        let activeNavId = 'home';
+        let scrollSpyLocked = false;
+
+        function setActiveNav(sectionId) {
+            if (!sectionId || activeNavId === sectionId) return;
+            activeNavId = sectionId;
+            document.querySelectorAll('[data-nav]').forEach(link => {
+                link.classList.toggle('nav-link-active', link.dataset.nav === sectionId);
+            });
+        }
+
+        function closeMobileMenu() {
+            const panel = document.getElementById('mobile-menu-panel');
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (!panel || !toggle) return;
+            panel.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            if (icon) icon.textContent = 'menu';
+            document.body.classList.remove('mobile-menu-open');
+        }
+
+        function openMobileMenu() {
+            const panel = document.getElementById('mobile-menu-panel');
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (!panel || !toggle) return;
+            panel.classList.add('is-open');
+            toggle.setAttribute('aria-expanded', 'true');
+            if (icon) icon.textContent = 'close';
+            document.body.classList.add('mobile-menu-open');
+        }
+
+        function toggleMobileMenu() {
+            const panel = document.getElementById('mobile-menu-panel');
+            if (panel && panel.classList.contains('is-open')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = navSectionIds
+                .map(id => document.getElementById(id))
+                .filter(Boolean);
+
+            if (!sections.length) return;
+
+            const observer = new IntersectionObserver(entries => {
+                if (scrollSpyLocked) return;
+                const visible = entries
+                    .filter(entry => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+                if (visible.length) {
+                    setActiveNav(visible[0].target.id);
+                }
+            }, {
+                root: null,
+                rootMargin: '-20% 0px -55% 0px',
+                threshold: [0, 0.1, 0.25, 0.5]
+            });
+
+            sections.forEach(section => observer.observe(section));
+
+            document.querySelectorAll('[data-nav]').forEach(link => {
+                link.addEventListener('click', () => {
+                    setActiveNav(link.dataset.nav);
+                    closeMobileMenu();
+                    scrollSpyLocked = true;
+                    setTimeout(() => { scrollSpyLocked = false; }, 800);
+                });
+            });
+
+            const hash = window.location.hash.replace('#', '');
+            if (navSectionIds.includes(hash)) {
+                setActiveNav(hash);
+            } else {
+                setActiveNav('home');
+            }
+
+            window.addEventListener('hashchange', () => {
+                const nextHash = window.location.hash.replace('#', '');
+                if (navSectionIds.includes(nextHash)) {
+                    setActiveNav(nextHash);
+                }
+            });
+        }
+
+        function initMobileMenu() {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            if (toggle) {
+                toggle.addEventListener('click', toggleMobileMenu);
+            }
+        }
+
+        function initContactForm() {
+            const form = document.getElementById('contact-form');
+            const messageEl = document.getElementById('contact-form-message');
+            if (!form) return;
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const name = String(formData.get('name') || '').trim();
+                const email = String(formData.get('email') || '').trim();
+                const message = String(formData.get('message') || '').trim();
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                messageEl.classList.remove('hidden', 'success', 'error');
+
+                if (!name || !email || !message) {
+                    messageEl.textContent = '请填写姓名、公司邮件和业务需求简述。';
+                    messageEl.classList.add('error');
+                    return;
+                }
+
+                if (!emailPattern.test(email)) {
+                    messageEl.textContent = '请输入有效的公司邮件地址。';
+                    messageEl.classList.add('error');
+                    return;
+                }
+
+                const subject = encodeURIComponent('Weiming AI 咨询 - ' + name);
+                const body = encodeURIComponent(
+                    '姓名: ' + name + '\n' +
+                    '公司邮件: ' + email + '\n\n' +
+                    '业务需求:\n' + message
+                );
+
+                window.location.href = 'mailto:yu@dreamer.to?subject=' + subject + '&body=' + body;
+                messageEl.textContent = '正在打开邮件客户端，请确认发送。若未自动打开，请直接写信至 yu@dreamer.to。';
+                messageEl.classList.add('success');
+            });
+        }
+
+        initScrollSpy();
+        initMobileMenu();
+        initContactForm();
     </script>
 </body>
 

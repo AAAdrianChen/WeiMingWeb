@@ -17,3 +17,5 @@ build/
 # Environment
 .env
 .env.local
+
+.vercel

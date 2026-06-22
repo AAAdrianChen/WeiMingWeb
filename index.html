@@ -450,90 +450,70 @@
                     <span class="label-caps block mb-4 text-secondary/60">Engineering Expertise</span>
                     <h2 class="heading-section text-primary" data-stitch-orig-opacity="0">三大核心能力</h2>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-on-primary/10">
-                    <div class="py-8 lg:py-0 lg:px-10 first:pl-0 space-y-6 group">
-                        <div
-                            class="capability-icon w-10 h-10 flex items-center justify-center border border-primary/20">
-                            <span class="material-symbols-outlined text-2xl text-primary">analytics</span>
-                        </div>
-                        <h3 class="font-headline-md text-lg leading-tight text-primary">处理复杂数据<br />建立业务分析闭环</h3>
-                        <p class="font-body-md text-sm leading-relaxed text-secondary">
-                            不仅仅是接入向量数据库。我们利用多模态处理与多层级清洗技术，将非结构化数据转化为高价值业务指标。</p>
-                    </div>
-                    <div class="py-8 lg:py-0 lg:px-10 space-y-6 group">
-                        <div
-                            class="capability-icon w-10 h-10 flex items-center justify-center border border-primary/20">
-                            <span class="material-symbols-outlined text-2xl text-primary">monitoring</span>
-                        </div>
-                        <h3 class="font-headline-md text-lg leading-tight text-primary">让 AI 投入呈现<br />可量化业务结果</h3>
-                        <p class="font-body-md text-sm leading-relaxed text-secondary">基于 Weiming ROI 评估框架，为每一项 AI
-                            特性建立追踪看板，让 CIO/CEO 清晰洞察投入产出比。</p>
-                    </div>
-                    <div class="py-8 lg:py-0 lg:px-10 last:pr-0 space-y-6 group">
-                        <div
-                            class="capability-icon w-10 h-10 flex items-center justify-center border border-primary/20">
-                            <span class="material-symbols-outlined text-2xl text-primary">settings_account_box</span>
-                        </div>
-                        <h3 class="font-headline-md text-lg leading-tight text-primary">把技术能力转化<br />为真实业务能力</h3>
-                        <p class="font-body-md text-sm leading-relaxed text-secondary">我们深入一线场景，开发符合直觉的 AI 原生应用，确保 AI
-                            真正被员工使用并产生实际业务动作。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Scenarios & Cases -->
-        <section class="bg-white section-py" id="scenarios">
-            <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
-                <div
-                    class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 border-b border-primary/5 pb-8">
-                    <div class="space-y-3">
-                        <span class="label-caps block">Selected Cases</span>
-                        <h2 class="heading-section">我们能让 AI 技术为组织带来业务增长和效率提升</h2>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8"><!-- Case 1 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
                     <div class="group cursor-pointer space-y-6" onclick="openExpertiseModal('data-loop')">
-                        <div class="aspect-video bg-surface-container overflow-hidden relative border border-primary/5">
-                            <img alt="Marketing Agent"
+                        <div class="aspect-video bg-white overflow-hidden relative border border-primary/5">
+                            <img alt="数据处理与业务分析"
                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP1kDtUauAUPtyFD4YafnnXx5pFHXiCQdlesiaEvXcfCGsyyU4LCuRlPLOxB3MbUwIxR_l7AvJOjvT7SneH1_xCsGpvOH5_fQgbmit-maiTlDWHhlXxjr37umn6D_6IXRCwJNGnQhPgc3Od-r7JGzdc7De7mq5iBrg43ySBQ5_b0vPIKg8eXWzimfcZNqX4N8e3tp8cXKkjZDJe_pzw3hIMv_qs71wY1JaP94Y9dH6zxFDUlqWtHAWd0Mw9rDpALxfYrbpWSllCwM" />
                         </div>
-                        <div class="space-y-2">
-                            <h5
-                                class="font-headline-md text-lg text-primary leading-snug group-hover:text-primary transition-colors">
-                                处理复杂数据，建立业务分析闭环</h5>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="capability-icon w-10 h-10 shrink-0 flex items-center justify-center border border-primary/20">
+                                    <span class="material-symbols-outlined text-2xl text-primary">analytics</span>
+                                </div>
+                                <h3 class="font-headline-md text-lg leading-tight text-primary">处理复杂数据<br />建立业务分析闭环
+                                </h3>
+                            </div>
+                            <p class="font-body-md text-sm leading-relaxed text-secondary">
+                                不仅仅是接入向量数据库。我们利用多模态处理与多层级清洗技术，将非结构化数据转化为高价值业务指标。</p>
                             <p
                                 class="text-secondary font-normal text-sm leading-relaxed border-l border-primary/10 pl-4">
                                 驱动收入增长与人效提升</p>
                         </div>
                     </div>
-                    <!-- Case 2 -->
                     <div class="group cursor-pointer space-y-6" onclick="openExpertiseModal('roi')">
-                        <div class="aspect-video bg-surface-container overflow-hidden relative border border-primary/5">
-                            <img alt="Industrial Maintenance"
+                        <div class="aspect-video bg-white overflow-hidden relative border border-primary/5">
+                            <img alt="AI 投入 ROI 追踪"
                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjIPSD6KzgUEQEC57MCN1wzkXOZwoRs-coJjP3INSE7bfV42fLHdUv7A8cQHY4yHJpQxM8Z2Gxr6BahaXX_WqN3FqHhgw68cvTLzJGlrWmC-vQXChWW485g1LePCQt-Pcc5gwZcXw-Os6rLBcW4kwpUjlsiUzUmFR5kabzVkLgOTaDV8QxwC8uLhDdYeqv0Brvr6TH5zENiOwohFFpNMgr69vyYgSSAgwb_ZXOkySj9OxyDp_IFKshCLmVYLJGIamwmYQHtr848ZI" />
                         </div>
-                        <div class="space-y-2">
-                            <h5
-                                class="font-headline-md text-lg text-primary leading-snug group-hover:text-primary transition-colors">
-                                让 AI 投入呈现可量化业务的结果</h5>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="capability-icon w-10 h-10 shrink-0 flex items-center justify-center border border-primary/20">
+                                    <span class="material-symbols-outlined text-2xl text-primary">monitoring</span>
+                                </div>
+                                <h3 class="font-headline-md text-lg leading-tight text-primary">让 AI 投入呈现<br />可量化业务结果
+                                </h3>
+                            </div>
+                            <p class="font-body-md text-sm leading-relaxed text-secondary">基于 Weiming ROI 评估框架，为每一项 AI
+                                特性建立追踪看板，让 CIO/CEO 清晰洞察投入产出比。</p>
                             <p
                                 class="text-secondary font-normal text-sm leading-relaxed border-l border-primary/10 pl-4">
                                 围绕用户价值与商业结果重新定义产品</p>
                         </div>
                     </div>
-                    <!-- Case 3 -->
                     <div class="group cursor-pointer space-y-6" onclick="openExpertiseModal('capability')">
-                        <div class="aspect-video bg-surface-container overflow-hidden relative border border-primary/5">
-                            <img alt="Developer Efficiency Tools"
+                        <div class="aspect-video bg-white overflow-hidden relative border border-primary/5">
+                            <img alt="技术能力业务化"
                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp3c5YBq2fdP_TfixhJ_jlNUwz4Pu3I9GglESQVRHpwMPZUh11vcQOsxp9Z8kSvB7d4jbSUAkNSwitiuHmlNuS7fMCDyHSo08eDcX2dtyqoiGNJGVQuPKAeLzF1FzCVuTTIksSrtZm-rdu2UkkIzKI4InMtpTJn9QsFGU85up53EyiymLnG7TAl8RDnZUWKrRDOt0aviyqQUdkfEozoD-MRDLK4YRMzxNx2qmXpdChSanPE-S0kkDbBIbuEl-0sRIUnmBeChSMv14" />
                         </div>
-                        <div class="space-y-2">
-                            <h5
-                                class="font-headline-md text-lg text-primary leading-snug group-hover:text-primary transition-colors">
-                                把技术能力转化为真实业务能力</h5>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="capability-icon w-10 h-10 shrink-0 flex items-center justify-center border border-primary/20">
+                                    <span
+                                        class="material-symbols-outlined text-2xl text-primary">settings_account_box</span>
+                                </div>
+                                <h3 class="font-headline-md text-lg leading-tight text-primary">把技术能力转化<br />为真实业务能力
+                                </h3>
+                            </div>
+                            <p class="font-body-md text-sm leading-relaxed text-secondary">我们深入一线场景，开发符合直觉的 AI 原生应用，确保
+                                AI
+                                真正被员工使用并产生实际业务动作。</p>
                             <p
                                 class="text-secondary font-normal text-sm leading-relaxed border-l border-primary/10 pl-4">
                                 工程效率、人效提升与知识交接</p>
@@ -543,7 +523,7 @@
             </div>
         </section>
         <!-- Detailed Case Study Block -->
-        <section class="bg-surface-container section-py" id="selected-cases-new">
+        <section class="bg-surface-container section-py" id="scenarios">
             <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
                 <div class="mb-16">
                     <span class="label-caps block mb-4">Case Highlights</span>
@@ -1256,7 +1236,7 @@
                             <ul class="space-y-4 text-sm text-on-primary/70">
                                 <li><a class="hover:text-on-primary transition-colors" href="#capabilities">核心能力</a>
                                 </li>
-                                <li><a class="hover:text-on-primary transition-colors" href="#scenarios">业务场景</a></li>
+                                <li><a class="hover:text-on-primary transition-colors" href="#scenarios">精选案例</a></li>
                                 <li><a class="hover:text-on-primary transition-colors" href="#methodology">工程方法论</a>
                                 </li>
                             </ul>

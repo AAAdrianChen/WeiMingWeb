@@ -102,13 +102,49 @@
             --text-muted: #64748B;
             --surface-light: #FAFAFA;
             --decor-line: #E2E8F0;
+            --future-paper: linear-gradient(135deg, rgba(255, 247, 232, 0.58) 0%, rgba(250, 250, 250, 0.82) 42%, rgba(231, 246, 250, 0.46) 100%);
+            --retro-scanline: repeating-linear-gradient(0deg, rgba(var(--brand-rgb), 0.008) 0 1px, transparent 1px 12px);
+            --math-curve-field: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201920%20960%22%3E%3Cg%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M-160%20245%20C130%20115%20390%20365%20685%20235%20S1230%20130%201590%20280%20S2030%20320%202130%20200%22%20stroke%3D%22%231E3A5F%22%20stroke-width%3D%221%22%20opacity%3D%22.028%22%2F%3E%3Cpath%20d%3D%22M-160%20335%20C160%20210%20410%20455%20715%20325%20S1250%20220%201610%20370%20S2030%20410%202130%20290%22%20stroke%3D%22%231E3A5F%22%20stroke-width%3D%221%22%20opacity%3D%22.022%22%2F%3E%3Cpath%20d%3D%22M-160%20445%20C170%20325%20445%20570%20750%20435%20S1260%20330%201635%20485%20S2035%20520%202130%20405%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%221%22%20opacity%3D%22.018%22%2F%3E%3Cpath%20d%3D%22M-160%20665%20C170%20535%20480%20755%20780%20625%20S1300%20545%201650%20695%20S2020%20730%202130%20610%22%20stroke%3D%22%231E3A5F%22%20stroke-width%3D%221%22%20opacity%3D%22.016%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+            --math-curve-size: 1920px 960px;
         }
 
         body {
             background-color: var(--surface-light);
+            background-image:
+                var(--retro-scanline),
+                var(--math-curve-field),
+                var(--future-paper);
+            background-size:
+                auto,
+                var(--math-curve-size),
+                auto;
+            background-position:
+                0 0,
+                center top,
+                0 0;
+            background-repeat:
+                repeat,
+                repeat-y,
+                no-repeat;
             color: var(--text-muted);
             font-family: 'Geist', 'PingFang SC', sans-serif;
             -webkit-font-smoothing: antialiased;
+        }
+
+        .engineering-grid-bg {
+            background-color: var(--surface-light);
+            background-image:
+                var(--retro-scanline),
+                var(--math-curve-field),
+                var(--future-paper);
+            background-size:
+                auto,
+                var(--math-curve-size),
+                auto;
+            background-position:
+                0 0,
+                center top,
+                0 0;
         }
 
         .bg-grid {
@@ -130,20 +166,52 @@
         }
 
         #home {
-            background: var(--surface-light);
-            border-bottom: 1px solid var(--decor-line);
+            background: transparent;
+            border-bottom: 0;
+        }
+
+        .hero-isometric-bg {
+            overflow: hidden;
+        }
+
+        .hero-isometric-bg svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-visual-image {
+            display: block;
+            width: min(100%, 640px);
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(var(--accent-rgb), 0.12));
+        }
+
+        .hero-quote {
+            font-family: 'Geist', 'PingFang SC', sans-serif;
+            color: var(--brand);
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+        }
+
+        .hero-dot {
+            display: block;
+            width: 28px;
+            height: 4px;
+            border-radius: 2px;
+            background: #E2E8F0;
+            transition: background 0.3s, width 0.3s;
+        }
+
+        .hero-dot-active {
+            background: var(--accent);
+            width: 36px;
         }
 
         /* 板块节奏：白 / 浅灰蓝交替 + 暗色案例区 */
-        #insights,
-        #selected-cases,
-        #pre-project-questions {
-            background: var(--surface-light);
-        }
-
         #technical-capabilities,
-        #contact {
-            background: #FFFFFF;
+        #contact,
+        #pre-project-questions {
+            background: transparent;
         }
 
         #capabilities,
@@ -151,25 +219,16 @@
         #product-matrix,
         #methodology,
         #about {
-            background: var(--surface-light);
+            background: transparent;
         }
 
         #scenarios {
-            border-top: 1px solid var(--decor-line);
             position: relative;
             overflow: hidden;
         }
 
         #scenarios::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(var(--accent-rgb), 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(var(--accent-rgb), 0.04) 1px, transparent 1px);
-            background-size: 64px 64px;
-            pointer-events: none;
-            opacity: 0.3;
+            content: none;
         }
 
         #scenarios .heading-section {
@@ -190,7 +249,19 @@
         }
 
         main>section:not(#home) {
-            border-top: 1px solid var(--decor-line);
+            position: relative;
+            border-top: 0;
+        }
+
+        main>section:not(#home)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background: linear-gradient(to bottom, rgba(250, 250, 250, 0.34), rgba(250, 250, 250, 0));
+            pointer-events: none;
         }
 
         .serial-number,
@@ -367,41 +438,6 @@
         }
     </style>
     <style>
-        .product-card-container {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            max-height: 160px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .product-card-container.expanded {
-            max-height: 2000px;
-            grid-column: 1 / -1 !important;
-            z-index: 20;
-            cursor: default;
-        }
-
-        .unroll-content {
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 0.4s ease-out 0.2s;
-            pointer-events: none;
-        }
-
-        .expanded .unroll-content {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        .expand-indicator {
-            transition: transform 0.3s ease;
-        }
-
-        .expanded .expand-indicator {
-            transform: rotate(180deg);
-        }
-
         .modal-backdrop {
             opacity: 0;
             transition: opacity 0.25s ease;
@@ -539,6 +575,119 @@
         .group:hover .capability-icon .material-symbols-outlined {
             color: var(--brand);
         }
+
+        #capabilities .group.card-hover-glow {
+            padding: 1rem;
+            border-radius: 2px;
+        }
+
+        @media (min-width: 1024px) {
+            #capabilities .group.card-hover-glow {
+                padding: 1.25rem;
+            }
+        }
+
+        .product-card {
+            background: #FFFFFF;
+            border: 1px solid var(--decor-line);
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(44, 53, 63, 0.04), 0 4px 16px rgba(44, 53, 63, 0.06);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            border-color: rgba(var(--accent-rgb), 0.25);
+            box-shadow: 0 4px 12px rgba(44, 53, 63, 0.06), 0 12px 32px rgba(44, 53, 63, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .tag-tech {
+            background: rgba(37, 99, 235, 0.08);
+            color: #2563EB;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        .tag-platform {
+            background: rgba(16, 185, 129, 0.08);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
+        .tag-ai {
+            background: rgba(139, 92, 246, 0.08);
+            color: #7C3AED;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        .tag-data {
+            background: rgba(245, 158, 11, 0.08);
+            color: #D97706;
+            border: 1px solid rgba(245, 158, 11, 0.15);
+        }
+
+        #lang-dropdown.open #lang-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #side-nav {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 16px;
+        }
+
+        @media (max-width: 1023px) {
+            #side-nav { display: none; }
+        }
+
+        .side-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .side-nav-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            opacity: 0;
+            transform: translateX(6px);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .side-nav-item:hover .side-nav-label,
+        .side-nav-item.active .side-nav-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .side-nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--decor-line);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .side-nav-item.active .side-nav-dot {
+            background: var(--accent);
+            width: 12px;
+            height: 12px;
+            box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
+        }
     </style>
 </head>
 
@@ -553,23 +702,27 @@
                 <span class="text-[10px] text-muted font-medium tracking-wider mt-1 uppercase">Fuzhou Xunjing
                     Medical Tech</span>
             </a>
-            <div class="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2" id="desktop-nav">
-                <a class="nav-link nav-link-active font-label-sm text-label-sm uppercase tracking-widest"
-                    data-nav="home" href="#home">首页</a>
-                <a class="nav-link font-label-sm text-label-sm uppercase tracking-widest" data-nav="insights"
-                    href="#insights">业务结果</a>
-                <a class="nav-link font-label-sm text-label-sm uppercase tracking-widest" data-nav="scenarios"
-                    href="#scenarios">案例</a>
-                <a class="nav-link font-label-sm text-label-sm uppercase tracking-widest" data-nav="capabilities"
-                    href="#capabilities">技术能力</a>
-                <a class="nav-link font-label-sm text-label-sm uppercase tracking-widest" data-nav="methodology"
-                    href="#methodology">方法论</a>
-                <a class="nav-link font-label-sm text-label-sm uppercase tracking-widest" data-nav="about"
-                    href="#about">关于</a>
-            </div>
-            <div class="flex items-center gap-3 shrink-0">
+            <div class="flex items-center gap-3 shrink-0 ml-auto">
+                <a class="hidden lg:flex items-center gap-1.5 text-sm text-muted hover:text-primary transition-colors"
+                    href="tel:059187510992">
+                    <span class="material-symbols-outlined text-base">call</span>
+                    <span class="font-medium">(0591) 8751 0992</span>
+                </a>
+                <div class="relative hidden sm:block" id="lang-dropdown">
+                    <button onclick="document.getElementById('lang-dropdown').classList.toggle('open')"
+                        class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium tracking-wider text-muted hover:text-primary transition-all rounded-sm"
+                        id="lang-toggle">
+                        <span class="material-symbols-outlined text-sm">translate</span>
+                        <span id="lang-label">中文</span>
+                    </button>
+                    <div class="absolute right-0 top-full mt-1.5 bg-white border border-outline shadow-md rounded-sm opacity-0 invisible transition-all duration-150 min-w-[72px] z-50"
+                        id="lang-menu">
+                        <button onclick="setLang('zh')" class="block w-full text-left px-3.5 py-2 text-[11px] font-medium tracking-wider text-muted hover:text-primary hover:bg-surface-container transition-colors first:rounded-t-sm">中文</button>
+                        <button onclick="setLang('en')" class="block w-full text-left px-3.5 py-2 text-[11px] font-medium tracking-wider text-muted hover:text-primary hover:bg-surface-container transition-colors last:rounded-b-sm">English</button>
+                    </div>
+                </div>
                 <a class="hidden sm:inline-flex btn-cta px-6 py-2.5 font-label-md text-label-sm font-bold uppercase tracking-widest"
-                    href="#contact">联系我们</a>
+                    href="#contact" data-zh="联系我们" data-en="Contact Us">联系我们</a>
                 <button aria-expanded="false" aria-label="打开菜单"
                     class="lg:hidden p-2 border border-primary/10 hover:border-primary transition-colors"
                     id="mobile-menu-toggle" type="button">
@@ -580,110 +733,193 @@
         <div class="lg:hidden border-t border-primary/5 bg-white/95 backdrop-blur-md" id="mobile-menu-panel">
             <div class="px-margin-mobile py-6 space-y-1 max-w-container-max mx-auto">
                 <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
-                    data-nav="home" href="#home">首页</a>
+                    data-nav="home" href="#home" data-zh="首页" data-en="Home">首页</a>
                 <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
-                    data-nav="insights" href="#insights">业务结果</a>
+                    data-nav="capabilities" href="#capabilities" data-zh="技术能力" data-en="Capabilities">技术能力</a>
                 <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
-                    data-nav="scenarios" href="#scenarios">案例</a>
+                    data-nav="scenarios" href="#scenarios" data-zh="案例" data-en="Cases">案例</a>
                 <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
-                    data-nav="capabilities" href="#capabilities">技术能力</a>
+                    data-nav="methodology" href="#methodology" data-zh="方法论" data-en="Methodology">方法论</a>
                 <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
-                    data-nav="methodology" href="#methodology">方法论</a>
-                <a class="nav-link nav-link-mobile block py-3 font-label-sm text-label-sm uppercase tracking-widest border-b border-primary/5"
-                    data-nav="about" href="#about">关于</a>
+                    data-nav="about" href="#about" data-zh="关于" data-en="About">关于</a>
                 <a class="block mt-4 btn-cta px-6 py-3 text-center font-label-md text-label-sm font-bold uppercase tracking-widest"
-                    href="#contact">联系我们</a>
+                    href="#contact" data-zh="联系我们" data-en="Contact Us">联系我们</a>
             </div>
         </div>
     </nav>
     <main>
         <!-- Hero Section -->
-        <section id="home" class="relative min-h-[90vh] flex flex-col justify-center bg-background overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <div class="absolute inset-0 bg-tech-grid opacity-[0.18]"></div>
-                <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-background"></div>
+        <section id="home"
+            class="relative min-h-[calc(100vh-72px)] flex flex-col justify-center bg-background overflow-hidden py-12 lg:py-16">
+            <div class="hero-isometric-bg absolute inset-0 z-0 pointer-events-none select-none" aria-hidden="true">
+                <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="cube-top" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#FFFFFF" />
+                            <stop offset="100%" stop-color="#F0F4F8" />
+                        </linearGradient>
+                        <linearGradient id="cube-left" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#E8EDF2" />
+                            <stop offset="100%" stop-color="#D5DCE6" />
+                        </linearGradient>
+                        <linearGradient id="cube-right" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#F5F8FB" />
+                            <stop offset="100%" stop-color="#E2E8F0" />
+                        </linearGradient>
+                        <linearGradient id="cube-glow-top" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#DBEAFE" />
+                            <stop offset="100%" stop-color="#BFDBFE" />
+                        </linearGradient>
+                        <linearGradient id="cube-glow-left" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#93C5FD" />
+                            <stop offset="100%" stop-color="#60A5FA" />
+                        </linearGradient>
+                        <linearGradient id="cube-glow-right" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#BFDBFE" />
+                            <stop offset="100%" stop-color="#93C5FD" />
+                        </linearGradient>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="12" result="b" />
+                            <feMerge>
+                                <feMergeNode in="b" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <g opacity="0.85">
+                        <g transform="translate(80,520)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,60 40,83 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,60 40,83 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(200,480)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,90 40,113 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,90 40,113 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(340,540)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,45 40,68 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,45 40,68 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(480,500)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,75 40,98 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,75 40,98 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(620,560)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,35 40,58 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,35 40,58 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(760,490)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,100 40,123 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,100 40,123 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(900,530)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,55 40,78 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,55 40,78 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(1040,510)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,80 40,103 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,80 40,103 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(1180,550)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,40 40,63 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,40 40,63 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(1320,500)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,70 40,93 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,70 40,93 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(150,620)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,50 40,73 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,50 40,73 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(400,640)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,30 40,53 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,30 40,53 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(700,630)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,40 40,63 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,40 40,63 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(1000,650)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,25 40,48 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,25 40,48 40,23" fill="url(#cube-right)" />
+                        </g>
+                        <g transform="translate(1250,620)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-top)" />
+                            <polygon points="0,0 0,45 40,68 40,23" fill="url(#cube-left)" />
+                            <polygon points="80,0 80,45 40,68 40,23" fill="url(#cube-right)" />
+                        </g>
+                    </g>
+                    <g filter="url(#glow)" opacity="0.7">
+                        <g transform="translate(560,420)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-glow-top)" />
+                            <polygon points="0,0 0,65 40,88 40,23" fill="url(#cube-glow-left)" />
+                            <polygon points="80,0 80,65 40,88 40,23" fill="url(#cube-glow-right)" />
+                        </g>
+                        <g transform="translate(950,400)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-glow-top)" />
+                            <polygon points="0,0 0,55 40,78 40,23" fill="url(#cube-glow-left)" />
+                            <polygon points="80,0 80,55 40,78 40,23" fill="url(#cube-glow-right)" />
+                        </g>
+                        <g transform="translate(280,440)">
+                            <polygon points="0,0 40,-23 80,0 40,23" fill="url(#cube-glow-top)" />
+                            <polygon points="0,0 0,50 40,73 40,23" fill="url(#cube-glow-left)" />
+                            <polygon points="80,0 80,50 40,73 40,23" fill="url(#cube-glow-right)" />
+                        </g>
+                    </g>
+                </svg>
+                <div class="absolute inset-0 bg-gradient-to-b from-white/75 via-white/40 to-background"></div>
             </div>
             <div
-                class="relative z-10 w-full px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto py-32 lg:py-48">
-                <div class="max-w-5xl">
-                    <div class="space-y-16">
-                        <div class="space-y-8"><span
-                                class="inline-block font-label-md text-label-sm uppercase tracking-[0.4em] text-muted border-l-2 border-primary pl-6">Swift.
-                                Svelte. Smooth.</span>
-                            <h1 class="font-display text-6xl lg:text-8xl text-on-background leading-[1.05] tracking-tighter">
-                                <span class="block text-3xl lg:text-5xl font-medium mb-6 text-muted">未名
-                                    AI</span><span class="block">我们帮企业把 AI 投入</span><span
-                                    class="block font-black">变成可量化的业务结果</span>
-                            </h1>
-                            <div class="max-w-4xl">
-                                <p class="font-body-lg text-muted leading-relaxed text-xl">这个业务问题是否值得用 AI 解决？AI
-                                    应该放在哪个流程节点？最终应该带来什么结果？</p>
-                            </div>
+                class="relative z-10 w-full px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 items-center">
+                    <div class="flex flex-col justify-center space-y-10 lg:space-y-14 order-2 lg:order-1">
+                        <div class="space-y-6 lg:space-y-8">
+                            <span class="label-caps block text-2xl tracking-[0.12em]">WEIMING AI</span>
+                            <h1
+                                class="font-display text-[clamp(2.5rem,5.5vw,4.5rem)] text-on-background leading-[1.1] tracking-tight font-bold"
+                                data-zh-html="我们帮企业把 AI 投入<br>变成可量化的业务结果"
+                                data-en-html="We Turn AI Investment Into<br>Measurable Business Results">我们帮企业把 AI 投入<br>变成可量化的业务结果</h1>
+                            <p class="font-body-lg text-muted text-xl lg:text-2xl leading-relaxed"
+                                data-zh="领先的企业级 AI 工程专家"
+                                data-en="Leading Enterprise AI Engineering Experts">领先的企业级 AI 工程专家</p>
                         </div>
-                        <div class="flex flex-wrap items-center gap-10 pt-4"><a
-                                class="btn-cta px-14 py-6 font-label-md text-label-sm font-bold uppercase tracking-[0.2em] shadow-xl flex items-center gap-4"
-                                href="#contact">评估 AI 机会 <span
-                                    class="material-symbols-outlined text-base">north_east</span></a><a
-                                class="group flex items-center gap-4 text-primary font-label-md text-label-sm font-bold uppercase tracking-[0.2em] border-b-2 border-primary/10 hover:border-primary pb-2 transition-all"
-                                href="#scenarios">代表项目 <span
-                                    class="material-symbols-outlined text-xl group-hover:translate-x-2 transition-transform">arrow_forward</span></a>
+                        <div>
+                            <a class="btn-cta inline-flex items-center justify-center px-12 py-5 font-label-md text-label-sm font-bold uppercase tracking-[0.14em] shadow-lg"
+                                href="#contact" data-zh="评估 AI 机会" data-en="Assess AI Opportunity">评估 AI 机会</a>
                         </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center gap-5 lg:gap-6 order-1 lg:order-2">
+                        <img class="hero-visual-image" src="assets/above-slogan.webp" alt="AI 神经网络数据流与业务指标增长示意图" />
+                        <p class="hero-quote text-center font-headline-md text-base lg:text-lg italic tracking-[0]"
+                            data-zh-html="&ldquo;让每一行代码，都服务于可衡量的业务增长。&rdquo;"
+                            data-en-html="&ldquo;Every line of code serves measurable business growth.&rdquo;">"让每一行代码，都服务于可衡量的业务增长。"</p>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Core Insights -->
-        <section class="section-py" id="insights">
-            <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
-                    <div class="lg:col-span-5">
-                        <div class="space-y-4">
-                            <span class="label-caps block mb-4">Core Insights</span>
-                            <h2 class="heading-section">
-                                我们关注的<br />
-                                <span
-                                    class="text-muted/85 line-through decoration-1 italic font-light text-2xl lg:text-3xl">不是
-                                    AI 功能</span><br />
-                                <span class="text-primary font-black">而是业务结果</span>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="lg:col-span-7 lg:pt-12">
-                        <p class="font-body-md text-muted border-l-2 pl-6 border-primary/10 leading-relaxed">AI
-                            应该解决哪个高频、痛点且可量化的问题？上线后如何证明其价值？我们在投入开发之前完成业务判断，在过程中建立数据闭环，在上线之后持续衡量业务提升。
-                        </p>
-                    </div>
-                </div>
-                <div
-                    class="grid grid-cols-1 lg:grid-cols-3 gap-px bg-primary/5 border border-primary/5 overflow-hidden">
-                    <div
-                        class="bg-white p-10 hover:bg-surface-container transition-colors duration-500 card-lift card-hover-glow">
-                        <span class="text-2xl font-display serial-number block mb-4">01</span>
-                        <h3 class="font-headline-md text-xl text-primary mb-3">该不该做？</h3>
-                        <p class="font-body-md text-muted text-sm">判断业务问题是否值得用 AI 解决，避免为了 AI 而 AI。</p>
-                    </div>
-                    <div
-                        class="bg-white p-10 hover:bg-surface-container transition-colors duration-500 card-lift card-hover-glow">
-                        <span class="text-2xl font-display serial-number block mb-4">02</span>
-                        <h3 class="font-headline-md text-xl text-primary mb-3">先做哪里？</h3>
-                        <p class="font-body-md text-muted text-sm">找到流程中最有价值、最容易验证、最能产生收益的 AI 切入点。</p>
-                    </div>
-                    <div
-                        class="bg-white p-10 hover:bg-surface-container transition-colors duration-500 card-lift card-hover-glow">
-                        <span class="text-2xl font-display serial-number block mb-4">03</span>
-                        <h3 class="font-headline-md text-xl text-primary mb-3">如何衡量？</h3>
-                        <p class="font-body-md text-muted text-sm">从一开始设计收入、人效、时间、成本等可追踪的业务指标。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <!-- Core Capabilities -->
         <section class="section-py relative overflow-hidden" id="capabilities">
             <div class="absolute inset-0 opacity-[0.05] pointer-events-none bg-grid"></div>
             <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto relative z-10">
                 <div class="max-w-2xl mb-16">
                     <span class="label-caps block mb-4">Engineering Expertise</span>
-                    <h2 class="heading-section text-primary" data-stitch-orig-opacity="0">三大核心能力</h2>
+                    <h2 class="heading-section text-primary" data-stitch-orig-opacity="0"
+                        data-zh="三大核心能力" data-en="Three Core Capabilities">三大核心能力</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
                     <div class="group cursor-pointer space-y-6 card-hover-glow"
@@ -692,7 +928,7 @@
                         <div class="aspect-video bg-white overflow-hidden relative border border-primary/5">
                             <img alt="数据处理与业务分析"
                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP1kDtUauAUPtyFD4YafnnXx5pFHXiCQdlesiaEvXcfCGsyyU4LCuRlPLOxB3MbUwIxR_l7AvJOjvT7SneH1_xCsGpvOH5_fQgbmit-maiTlDWHhlXxjr37umn6D_6IXRCwJNGnQhPgc3Od-r7JGzdc7De7mq5iBrg43ySBQ5_b0vPIKg8eXWzimfcZNqX4N8e3tp8cXKkjZDJe_pzw3hIMv_qs71wY1JaP94Y9dH6zxFDUlqWtHAWd0Mw9rDpALxfYrbpWSllCwM" />
+                                src="assets/cap-data.png" />
                         </div>
                         <div class="space-y-4">
                             <div class="flex items-start gap-4">
@@ -700,13 +936,15 @@
                                     class="capability-icon w-10 h-10 shrink-0 flex items-center justify-center border border-primary/20">
                                     <span class="material-symbols-outlined text-2xl text-primary">analytics</span>
                                 </div>
-                                <h3 class="font-headline-md text-lg leading-tight text-primary">处理复杂数据<br />建立业务分析闭环
-                                </h3>
+                                <h3 class="font-headline-md text-lg leading-tight text-primary"
+                                    data-zh-html="处理复杂数据<br />建立业务分析闭环"
+                                    data-en-html="Complex Data Processing<br />Business Analytics Loop">处理复杂数据<br />建立业务分析闭环</h3>
                             </div>
-                            <p class="font-body-md text-sm leading-relaxed text-muted">
-                                不仅仅是接入向量数据库。我们利用多模态处理与多层级清洗技术，将非结构化数据转化为高价值业务指标。</p>
-                            <p class="text-muted font-normal text-sm leading-relaxed border-l border-primary/10 pl-4">
-                                驱动收入增长与人效提升</p>
+                            <p class="text-muted font-normal text-sm leading-relaxed border-l border-primary/10 pl-4"
+                                data-zh="驱动收入增长与人效提升" data-en="Driving revenue growth and workforce efficiency">驱动收入增长与人效提升</p>
+                            <p class="font-body-md text-sm leading-relaxed text-muted"
+                                data-zh="不仅仅是接入向量数据库。我们利用多模态处理与多层级清洗技术，将非结构化数据转化为高价值业务指标。"
+                                data-en="Beyond vector database integration. We leverage multimodal processing and multi-level cleaning to transform unstructured data into high-value business metrics.">不仅仅是接入向量数据库。我们利用多模态处理与多层级清洗技术，将非结构化数据转化为高价值业务指标。</p>
                         </div>
                     </div>
                     <div class="group cursor-pointer space-y-6 card-hover-glow" onclick="openExpertiseModal('roi')">
@@ -714,7 +952,7 @@
                         <div class="aspect-video bg-white overflow-hidden relative border border-primary/5">
                             <img alt="AI 投入 ROI 追踪"
                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjIPSD6KzgUEQEC57MCN1wzkXOZwoRs-coJjP3INSE7bfV42fLHdUv7A8cQHY4yHJpQxM8Z2Gxr6BahaXX_WqN3FqHhgw68cvTLzJGlrWmC-vQXChWW485g1LePCQt-Pcc5gwZcXw-Os6rLBcW4kwpUjlsiUzUmFR5kabzVkLgOTaDV8QxwC8uLhDdYeqv0Brvr6TH5zENiOwohFFpNMgr69vyYgSSAgwb_ZXOkySj9OxyDp_IFKshCLmVYLJGIamwmYQHtr848ZI" />
+                                src="assets/cap-roi.png" />
                         </div>
                         <div class="space-y-4">
                             <div class="flex items-start gap-4">
@@ -722,13 +960,15 @@
                                     class="capability-icon w-10 h-10 shrink-0 flex items-center justify-center border border-primary/20">
                                     <span class="material-symbols-outlined text-2xl text-primary">monitoring</span>
                                 </div>
-                                <h3 class="font-headline-md text-lg leading-tight text-primary">让 AI 投入呈现<br />可量化业务结果
-                                </h3>
+                                <h3 class="font-headline-md text-lg leading-tight text-primary"
+                                    data-zh-html="让 AI 投入呈现<br />可量化业务结果"
+                                    data-en-html="Make AI Investment Show<br />Measurable Business Results">让 AI 投入呈现<br />可量化业务结果</h3>
                             </div>
-                            <p class="font-body-md text-sm leading-relaxed text-muted">基于 Weiming ROI 评估框架，为每一项 AI
-                                特性建立追踪看板，让 CIO/CEO 清晰洞察投入产出比。</p>
-                            <p class="text-muted font-normal text-sm leading-relaxed border-l border-primary/10 pl-4">
-                                围绕用户价值与商业结果重新定义产品</p>
+                            <p class="text-muted font-normal text-sm leading-relaxed border-l border-primary/10 pl-4"
+                                data-zh="围绕用户价值与商业结果重新定义产品" data-en="Redefine products around user value and business outcomes">围绕用户价值与商业结果重新定义产品</p>
+                            <p class="font-body-md text-sm leading-relaxed text-muted"
+                                data-zh="基于 Weiming ROI 评估框架，为每一项 AI 特性建立追踪看板，让 CIO/CEO 清晰洞察投入产出比。"
+                                data-en="Based on the Weiming ROI framework, we build tracking dashboards for every AI feature, giving CIO/CEO clear visibility into ROI.">基于 Weiming ROI 评估框架，为每一项 AI 特性建立追踪看板，让 CIO/CEO 清晰洞察投入产出比。</p>
                         </div>
                     </div>
                     <div class="group cursor-pointer space-y-6 card-hover-glow"
@@ -737,7 +977,7 @@
                         <div class="aspect-video bg-white overflow-hidden relative border border-primary/5">
                             <img alt="技术能力业务化"
                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp3c5YBq2fdP_TfixhJ_jlNUwz4Pu3I9GglESQVRHpwMPZUh11vcQOsxp9Z8kSvB7d4jbSUAkNSwitiuHmlNuS7fMCDyHSo08eDcX2dtyqoiGNJGVQuPKAeLzF1FzCVuTTIksSrtZm-rdu2UkkIzKI4InMtpTJn9QsFGU85up53EyiymLnG7TAl8RDnZUWKrRDOt0aviyqQUdkfEozoD-MRDLK4YRMzxNx2qmXpdChSanPE-S0kkDbBIbuEl-0sRIUnmBeChSMv14" />
+                                src="assets/cap-capability.png" />
                         </div>
                         <div class="space-y-4">
                             <div class="flex items-start gap-4">
@@ -746,38 +986,16 @@
                                     <span
                                         class="material-symbols-outlined text-2xl text-primary">settings_account_box</span>
                                 </div>
-                                <h3 class="font-headline-md text-lg leading-tight text-primary">把技术能力转化<br />为真实业务能力
-                                </h3>
+                                <h3 class="font-headline-md text-lg leading-tight text-primary"
+                                    data-zh-html="把技术能力转化<br />为真实业务能力"
+                                    data-en-html="Transform Technical Capability<br />Into Real Business Capability">把技术能力转化<br />为真实业务能力</h3>
                             </div>
-                            <p class="font-body-md text-sm leading-relaxed text-muted">我们深入一线场景，开发符合直觉的 AI 原生应用，确保
-                                AI
-                                真正被员工使用并产生实际业务动作。</p>
-                            <p class="text-muted font-normal text-sm leading-relaxed border-l border-primary/10 pl-4">
-                                工程效率、人效提升与知识交接</p>
+                            <p class="text-muted font-normal text-sm leading-relaxed border-l border-primary/10 pl-4"
+                                data-zh="工程效率、人效提升与知识交接" data-en="Engineering efficiency, workforce improvement, knowledge transfer">工程效率、人效提升与知识交接</p>
+                            <p class="font-body-md text-sm leading-relaxed text-muted"
+                                data-zh="我们深入一线场景，开发符合直觉的 AI 原生应用，确保 AI 真正被员工使用并产生实际业务动作。"
+                                data-en="We dive into frontline scenarios, building intuitive AI-native applications that ensure AI is actually used by employees to drive real business actions.">我们深入一线场景，开发符合直觉的 AI 原生应用，确保 AI 真正被员工使用并产生实际业务动作。</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Selected Cases Summary -->
-        <section class="section-py" id="selected-cases">
-            <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
-                <div class="max-w-3xl mx-auto text-center mb-16 space-y-4">
-                    <span class="label-caps block">Selected Cases</span>
-                    <h2 class="heading-section">我们能让 AI 技术为组织带来业务增长和效率提升</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                    <div class="bg-white p-10 border border-primary/5 card-lift card-hover-glow min-h-[200px]">
-                        <h5 class="font-headline-sm text-base text-primary font-bold leading-snug mb-4">处理复杂数据，建立业务分析闭环</h5>
-                        <p class="text-sm text-muted leading-relaxed border-l border-primary/10 pl-4">驱动收入增长与人效提升</p>
-                    </div>
-                    <div class="bg-white p-10 border border-primary/5 card-lift card-hover-glow min-h-[200px]">
-                        <h5 class="font-headline-sm text-base text-primary font-bold leading-snug mb-4">让 AI 投入呈现可量化业务的结果</h5>
-                        <p class="text-sm text-muted leading-relaxed border-l border-primary/10 pl-4">围绕用户价值与商业结果重新定义产品</p>
-                    </div>
-                    <div class="bg-white p-10 border border-primary/5 card-lift card-hover-glow min-h-[200px]">
-                        <h5 class="font-headline-sm text-base text-primary font-bold leading-snug mb-4">把技术能力转化为真实业务能力</h5>
-                        <p class="text-sm text-muted leading-relaxed border-l border-primary/10 pl-4">工程效率、人效提升与知识交接</p>
                     </div>
                 </div>
             </div>
@@ -787,97 +1005,132 @@
             <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto relative z-10">
                 <div class="mb-16">
                     <span class="label-caps block mb-4">Case Highlights</span>
-                    <h2 class="heading-section">案例不是展示技术，而是展示业务结果</h2>
+                    <h2 class="heading-section" data-zh="项目案例" data-en="Project Cases">项目案例</h2>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Case 01: Jijiu AI -->
-                    <div class="case-card p-8 flex flex-col group min-h-[320px] cursor-pointer"
+                    <div class="case-card cursor-pointer group relative overflow-hidden"
                         onclick="openCaseStudyModal('jijiu')">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="text-4xl font-display serial-number-lg font-black">01</span>
-                                <span class="material-symbols-outlined transition-colors">medical_services</span>
-                            </div>
-                            <h3 class="font-headline-md text-lg mb-4 font-black leading-tight">JIJIU AI 急救
-                                AI 系统</h3>
-                            <p class="font-body-md text-xs case-desc leading-relaxed">
-                                提升救治率与节省黄金时间。通过实时语音转写与病情信息结构化，打通院前急救与院内救治的信息断层。</p>
+                        <div class="aspect-[16/10] overflow-hidden bg-primary/5 relative">
+                            <img alt="急救 AI 系统"
+                                class="w-full h-full object-cover absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                    src="assets/case-jijiu.jpg"
+                                onerror="this.parentElement.innerHTML='<div class=flex items-center justify-center h-full><span class=material-symbols-outlined text-6xl text-primary/20>medical_services</span></div>'" />
                         </div>
-                        <div class="pt-8">
-                            <span
-                                class="case-cta block w-full text-center border py-3 font-label-md text-[10px] font-bold uppercase tracking-widest transition-all">业务详情</span>
+                        <div class="p-8 lg:p-10 flex flex-col">
+                            <span class="text-4xl font-display serial-number-lg font-black mb-4">01</span>
+                            <h3
+                                class="font-headline-lg text-2xl mb-3 font-black leading-tight text-primary"
+                                data-zh="JIJIU AI 急救 AI 系统" data-en="JIJIU AI Emergency System">JIJIU AI 急救 AI 系统</h3>
+                                <p class="font-body-lg text-muted leading-relaxed mb-8 max-w-lg"
+                                    data-zh="提升救治率与节省黄金时间。通过实时语音转写与病情信息结构化，打通院前急救与院内救治的信息断层。"
+                                    data-en="Improving survival rates and saving critical time. Through real-time speech transcription and structured patient data, bridging the information gap between pre-hospital and in-hospital care.">提升救治率与节省黄金时间。通过实时语音转写与病情信息结构化，打通院前急救与院内救治的信息断层。</p>
+                            <div
+                                class="flex items-center gap-3 text-primary font-label-md text-sm font-bold uppercase tracking-widest mt-auto">
+                                <span data-zh="查看业务详情" data-en="View Details">查看业务详情</span>
+                                <span
+                                    class="material-symbols-outlined text-base group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                            </div>
                         </div>
                     </div>
                     <!-- Case 02: Logistics -->
-                    <div class="case-card p-8 flex flex-col group min-h-[320px] cursor-pointer"
+                    <div class="case-card cursor-pointer group overflow-hidden"
                         onclick="openCaseStudyModal('logistics')">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="text-4xl font-display serial-number-lg font-black">02</span>
-                                <span class="material-symbols-outlined transition-colors">local_shipping</span>
-                            </div>
-                            <h3 class="font-headline-md text-lg mb-4 font-black leading-tight">物流与复杂业务系统
-                            </h3>
-                            <p class="font-body-md text-xs case-desc leading-relaxed">
-                                流程的数字化、自动化与可分析化。从业务架构出发，解决多节点耦合难题，降低人工协调成本。</p>
+                        <div class="aspect-[16/10] overflow-hidden bg-primary/5 relative">
+                            <img alt="物流系统"
+                                class="w-full h-full object-cover absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                src="assets/case-logistics.jpg"
+                                onerror="this.parentElement.innerHTML='<div class=flex items-center justify-center h-full><span class=material-symbols-outlined text-6xl text-primary/20>local_shipping</span></div>'" />
                         </div>
-                        <div class="pt-8">
-                            <span
-                                class="case-cta block w-full text-center border py-3 font-label-md text-[10px] font-bold uppercase tracking-widest transition-all">业务详情</span>
+                        <div class="p-8 lg:p-10 flex flex-col">
+                            <span class="text-4xl font-display serial-number-lg font-black mb-4">02</span>
+                            <h3
+                                class="font-headline-lg text-2xl mb-3 font-black leading-tight text-primary"
+                                data-zh="物流与复杂业务系统" data-en="Logistics & Complex Business Systems">物流与复杂业务系统</h3>
+                                <p class="font-body-lg text-muted leading-relaxed mb-6"
+                                    data-zh="流程的数字化、自动化与可分析化。从业务架构出发，解决多节点耦合难题，降低人工协调成本。"
+                                    data-en="Digitizing, automating, and analyzing workflows. Starting from business architecture to solve multi-node coupling challenges and reduce manual coordination costs.">流程的数字化、自动化与可分析化。从业务架构出发，解决多节点耦合难题，降低人工协调成本。</p>
+                            <div
+                                class="flex items-center gap-3 text-primary font-label-md text-sm font-bold uppercase tracking-widest mt-auto">
+                                <span data-zh="查看业务详情" data-en="View Details">查看业务详情</span>
+                                <span
+                                    class="material-symbols-outlined text-base group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                            </div>
                         </div>
                     </div>
-                    <!-- Case 03: Esports -->
-                    <div class="case-card p-8 flex flex-col group min-h-[320px] cursor-pointer"
-                        onclick="openCaseStudyModal('esports')">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="text-4xl font-display serial-number-lg font-black">03</span>
-                                <span class="material-symbols-outlined transition-colors">sports_esports</span>
-                            </div>
-                            <h3 class="font-headline-md text-lg mb-4 font-black leading-tight">Dreamer
-                                eSports 追梦电竞</h3>
-                            <p class="font-body-md text-xs case-desc leading-relaxed">
-                                未来电竞竞技场接口与竞技分析看板。通过高精细度数据采集与实时分析，为职业战队提供决策支持。</p>
+                    <!-- Case 03: eSports -->
+                    <div class="case-card cursor-pointer group overflow-hidden" onclick="openCaseStudyModal('esports')">
+                        <div class="aspect-[16/10] overflow-hidden bg-primary/5 relative">
+                            <img alt="电竞分析"
+                                class="w-full h-full object-cover absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                src="assets/case-esports.jpg"
+                                onerror="this.parentElement.innerHTML='<div class=flex items-center justify-center h-full><span class=material-symbols-outlined text-6xl text-primary/20>sports_esports</span></div>'" />
                         </div>
-                        <div class="pt-8">
-                            <span
-                                class="case-cta block w-full text-center border py-3 font-label-md text-[10px] font-bold uppercase tracking-widest transition-all">业务详情</span>
+                        <div class="p-8 lg:p-10 flex flex-col">
+                            <span class="text-4xl font-display serial-number-lg font-black mb-4">03</span>
+                            <h3
+                                class="font-headline-lg text-2xl mb-3 font-black leading-tight text-primary"
+                                data-zh="Dreamer eSports 追梦电竞" data-en="Dreamer eSports">Dreamer eSports 追梦电竞</h3>
+                                <p class="font-body-lg text-muted leading-relaxed mb-6"
+                                    data-zh="未来电竞竞技场接口与竞技分析看板。通过高精细度数据采集与实时分析，为职业战队提供决策支持。"
+                                    data-en="Next-gen esports arena interface and competitive analytics dashboard. High-precision data collection and real-time analysis to support professional team decision-making.">未来电竞竞技场接口与竞技分析看板。通过高精细度数据采集与实时分析，为职业战队提供决策支持。</p>
+                            <div
+                                class="flex items-center gap-3 text-primary font-label-md text-sm font-bold uppercase tracking-widest mt-auto">
+                                <span data-zh="查看业务详情" data-en="View Details">查看业务详情</span>
+                                <span
+                                    class="material-symbols-outlined text-base group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                            </div>
                         </div>
                     </div>
-                    <!-- Case 04: Google SEO -->
-                    <div class="case-card p-8 flex flex-col group min-h-[320px] cursor-pointer"
-                        onclick="openCaseStudyModal('seo')">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="text-4xl font-display serial-number-lg font-black">04</span>
-                                <span class="material-symbols-outlined transition-colors">search</span>
-                            </div>
-                            <h3 class="font-headline-md text-lg mb-4 font-black leading-tight">Google
-                                收购：SEO/SEM</h3>
-                            <p class="font-body-md text-xs case-desc leading-relaxed">为专业营销团队打造的流量分析与优化平台。通过 AI
-                                洞察提升自然流量转化率，降低付费搜索成本。</p>
+                    <!-- Case 04: SEO -->
+                    <div class="case-card cursor-pointer group overflow-hidden" onclick="openCaseStudyModal('seo')">
+                        <div class="aspect-[16/10] overflow-hidden bg-primary/5 relative">
+                            <img alt="SEO 优化"
+                                class="w-full h-full object-cover absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                src="assets/case-seo.jpg"
+                                onerror="this.parentElement.innerHTML='<div class=flex items-center justify-center h-full><span class=material-symbols-outlined text-6xl text-primary/20>search</span></div>'" />
                         </div>
-                        <div class="pt-8">
-                            <span
-                                class="case-cta block w-full text-center border py-3 font-label-md text-[10px] font-bold uppercase tracking-widest transition-all">业务详情</span>
+                        <div class="p-8 lg:p-10 flex flex-col">
+                            <span class="text-4xl font-display serial-number-lg font-black mb-4">04</span>
+                            <h3
+                                class="font-headline-lg text-2xl mb-3 font-black leading-tight text-primary"
+                                data-zh="Google 收购：SEO/SEM" data-en="Google Acquisition: SEO/SEM">Google 收购：SEO/SEM</h3>
+                                <p class="font-body-lg text-muted leading-relaxed mb-6"
+                                    data-zh="为专业营销团队打造的流量分析与优化平台。通过 AI 洞察提升自然流量转化率，降低付费搜索成本。"
+                                    data-en="A traffic analysis and optimization platform for professional marketing teams. AI-powered insights to boost organic conversion rates and reduce paid search costs.">为专业营销团队打造的流量分析与优化平台。通过 AI 洞察提升自然流量转化率，降低付费搜索成本。</p>
+                            <div
+                                class="flex items-center gap-3 text-primary font-label-md text-sm font-bold uppercase tracking-widest mt-auto">
+                                <span data-zh="查看业务详情" data-en="View Details">查看业务详情</span>
+                                <span
+                                    class="material-symbols-outlined text-base group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                            </div>
                         </div>
                     </div>
-                    <!-- Case 05: Leukaemia Foundation -->
-                    <div class="case-card p-8 flex flex-col group min-h-[320px] cursor-pointer"
+                    <!-- Case 05: Leukaemia (spans full width) -->
+                    <div class="case-card cursor-pointer group overflow-hidden lg:col-span-2"
                         onclick="openCaseStudyModal('leukaemia')">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="text-4xl font-display serial-number-lg font-black">05</span>
-                                <span class="material-symbols-outlined transition-colors">volunteer_activism</span>
+                        <div class="grid grid-cols-1 lg:grid-cols-2">
+                            <div class="aspect-[16/10] lg:aspect-auto overflow-hidden bg-primary/5 relative">
+                                <img alt="内容管理系统"
+                                    class="w-full h-full object-cover absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                                    src="assets/case-leukaemia.jpg"
+                                    onerror="this.parentElement.innerHTML='<div class=flex items-center justify-center h-full><span class=material-symbols-outlined text-6xl text-primary/20>volunteer_activism</span></div>'" />
                             </div>
-                            <h3 class="font-headline-md text-lg mb-4 font-black leading-tight">Leukaemia
-                                Foundation 内容管理系统</h3>
-                            <p class="font-body-md text-xs case-desc leading-relaxed">
-                                为公益组织定制的现代化内容管理与数字资产平台。通过流程数字化大幅提升内容生产效率。</p>
-                        </div>
-                        <div class="pt-8">
-                            <span
-                                class="case-cta block w-full text-center border py-3 font-label-md text-[10px] font-bold uppercase tracking-widest transition-all">业务详情</span>
+                            <div class="p-10 lg:p-14 flex flex-col justify-center">
+                                <span class="text-5xl font-display serial-number-lg font-black mb-4">05</span>
+                            <h3
+                                class="font-headline-lg text-2xl mb-3 font-black leading-tight text-primary"
+                                data-zh="Leukaemia Foundation 内容管理系统" data-en="Leukaemia Foundation CMS">Leukaemia Foundation 内容管理系统</h3>
+                                <p class="font-body-lg text-muted leading-relaxed mb-6"
+                                    data-zh="为公益组织定制的现代化内容管理与数字资产平台。通过流程数字化大幅提升内容生产效率。"
+                                    data-en="A modern content management and digital asset platform tailored for non-profit organizations. Dramatically improving content production efficiency through process digitization.">为公益组织定制的现代化内容管理与数字资产平台。通过流程数字化大幅提升内容生产效率。</p>
+                                <div
+                                    class="flex items-center gap-3 text-primary font-label-md text-sm font-bold uppercase tracking-widest">
+                                    <span data-zh="查看业务详情" data-en="View Details">查看业务详情</span>
+                                    <span
+                                        class="material-symbols-outlined text-base group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -888,242 +1141,44 @@
             <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
                 <div class="mb-16">
                     <span class="label-caps block mb-4">Product Portfolio</span>
-                    <h2 class="heading-section">产品案例</h2>
-                    <p class="mt-4 text-muted font-body-md max-w-3xl leading-relaxed">
-                        我们展示项目时，不只说明用了什么技术，更关注它解决了什么业务问题，如何进入真实流程，以及最终如何被衡量。</p>
+                    <h2 class="heading-section" data-zh="产品案例" data-en="Product Portfolio">产品案例</h2>
+                    <p class="mt-4 text-muted font-body-md max-w-3xl leading-relaxed"
+                        data-zh="我们展示项目时，不只说明用了什么技术，更关注它解决了什么业务问题，如何进入真实流程，以及最终如何被衡量。"
+                        data-en="When we present projects, we focus not just on the technology used, but on what business problem was solved, how it entered real workflows, and how it is measured.">我们展示项目时，不只说明用了什么技术，更关注它解决了什么业务问题，如何进入真实流程，以及最终如何被衡量。</p>
                     <div class="h-1 w-12 bg-primary mt-6"></div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"><!-- DTrip AI -->
-                    <div class="product-card-container bg-white p-8 flex flex-col border border-primary/5 shadow-sm hover:border-primary/20 transition-all"
-                        onclick="this.classList.toggle('expanded')">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="h-16">
-                                <h3 class="font-headline-sm text-primary mb-1">DTrip AI</h3>
-                                <p class="text-[10px] text-muted uppercase tracking-widest font-medium">酒价比价引擎
-                                </p>
-                            </div>
-                            <span class="material-symbols-outlined text-primary/20 expand-indicator">expand_more</span>
-                        </div>
-                        <div class="unroll-content space-y-8 pt-4 border-t border-primary/5">
-                            <div class="min-h-[100px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">业务目标与判断
-                                </h4>
-                                <div class="text-sm text-muted leading-relaxed">
-                                    <p class="">目标：提升旅行决策效率。</p>
-                                    <p class="">判断：动态网页价格复杂分散，自动化旨在减少人工跨平台检索与对比成本。</p>
-                                </div>
-                            </div>
-                            <div class="min-h-[100px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">
-                                    解决方案与数据闭环</h4>
-                                <p class="text-sm text-muted leading-relaxed">构建一套 Cloudflare + Bun 自动化后端，支持
-                                    Stagehand 浏览器动作、边缘队列及 Workers AI。持续沉淀价格和用户查询行为。</p>
-                            </div>
-                            <div class="min-h-[80px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">业务结果方向
-                                </h4>
-                                <p class="text-sm text-primary font-bold leading-relaxed">
-                                    减少用户手动比价时间，将动态网页信息转化为可分析数据，建立商业化基础。</p>
-                            </div>
-                            <div class="flex flex-wrap gap-2 pt-4 border-t border-primary/5">
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">Bun</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">Hono</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">Cloudflare
-                                    Workers</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">Stagehand</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Note Weiming -->
-                    <div class="product-card-container bg-white p-8 flex flex-col border border-primary/5 shadow-sm hover:border-primary/20 transition-all"
-                        onclick="this.classList.toggle('expanded')">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="h-16">
-                                <h3 class="font-headline-sm text-primary mb-1">Note Weiming</h3>
-                                <p class="text-[10px] text-muted uppercase tracking-widest font-medium">AI 原生笔记
-                                </p>
-                            </div>
-                            <span class="material-symbols-outlined text-primary/20 expand-indicator">expand_more</span>
-                        </div>
-                        <div class="unroll-content space-y-8 pt-4 border-t border-primary/5">
-                            <div class="min-h-[100px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">业务目标与判断
-                                </h4>
-                                <div class="text-sm text-muted leading-relaxed">
-                                    <p class="">目标：让笔记从普通文本变成结构化记忆。</p>
-                                    <p class="">判断：拒绝简单叠加聊天框，AI 应深埋记录界面之下，实现无感抽取与快速召回。</p>
-                                </div>
-                            </div>
-                            <div class="min-h-[100px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">
-                                    解决方案与数据闭环</h4>
-                                <p class="text-sm text-muted leading-relaxed">iOS 笔记工作流。形成个人知识管理闭环。</p>
-                            </div>
-                            <div class="min-h-[80px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">业务结果方向
-                                </h4>
-                                <p class="text-sm text-primary font-bold leading-relaxed">路径 &lt; 400ms，普通新建笔记 0
-                                    网络调用，一键召回相关内容，大幅改善个人知识管理体验。</p>
-                            </div>
-                            <div class="flex flex-wrap gap-2 pt-4 border-t border-primary/5">
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">AICore</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">Data</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">iOS
-                                    原生</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- PromptLift -->
-                    <div class="product-card-container bg-white p-8 flex flex-col border border-primary/5 shadow-sm hover:border-primary/20 transition-all"
-                        onclick="this.classList.toggle('expanded')">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="h-16">
-                                <h3 class="font-headline-sm text-primary mb-1">PromptLift</h3>
-                                <p class="text-[10px] text-muted uppercase tracking-widest font-medium">跨平台 AI
-                                    素养产品</p>
-                            </div>
-                            <span class="material-symbols-outlined text-primary/20 expand-indicator">expand_more</span>
-                        </div>
-                        <div class="unroll-content space-y-8 pt-4 border-t border-primary/5">
-                            <div class="min-h-[100px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">业务目标与判断
-                                </h4>
-                                <div class="text-sm text-muted leading-relaxed">
-                                    <p class="">目标：降低 AI 工具门槛，帮普通用户获得更优输出。</p>
-                                    <p class="">判断：用户的痛点在于无法准确表达任务与补充上下文。</p>
-                                </div>
-                            </div>
-                            <div class="min-h-[100px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">
-                                    解决方案与数据闭环</h4>
-                                <p class="text-sm text-muted leading-relaxed">基于同一套 Hono / Cloudflare 优化 API，多端分发上线
-                                    Web、iOS、Android 和微信小程序。通过使用数据持续迭代提示词策略。</p>
-                            </div>
-                            <div class="min-h-[80px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">业务结果方向
-                                </h4>
-                                <p class="text-sm text-primary font-bold leading-relaxed">提升普通用户使用 AI 的成功率，降低学习成本，验证了一套
-                                    AI 能力多端分发的商业路径。</p>
-                            </div>
-                            <div class="flex flex-wrap gap-2 pt-4 border-t border-primary/5">
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">Hono</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">Cloudflare</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">Prompt
-                                    Optimization</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- CombineCodes -->
-                    <div class="product-card-container bg-white p-8 flex flex-col border border-primary/5 shadow-sm hover:border-primary/20 transition-all"
-                        onclick="this.classList.toggle('expanded')">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="h-16">
-                                <h3 class="font-headline-sm text-primary mb-1">CombineCodes</h3>
-                                <p class="text-[10px] text-muted uppercase tracking-widest font-medium">AI
-                                    开发者效率产品</p>
-                            </div>
-                            <span class="material-symbols-outlined text-primary/20 expand-indicator">expand_more</span>
-                        </div>
-                        <div class="unroll-content space-y-8 pt-4 border-t border-primary/5">
-                            <div class="min-h-[100px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">业务目标与判断
-                                </h4>
-                                <div class="text-sm text-muted leading-relaxed">
-                                    <p class="">目标：提升代码评审、调试和交接效率。</p>
-                                    <p class="">判断：代码上下文的手动整理与二进制噪音过滤消耗大量非直接价值时间。</p>
-                                </div>
-                            </div>
-                            <div class="min-h-[100px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">
-                                    解决方案与数据闭环</h4>
-                                <p class="text-sm text-muted leading-relaxed">开发通用 macOS 应用，自动扫描多仓、过滤噪音，输出适合 AI 阅读的
-                                    Plain / XML / Markdown / Claude XML 文件。</p>
-                            </div>
-                            <div class="min-h-[80px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">业务结果方向
-                                </h4>
-                                <p class="text-sm text-primary font-bold leading-relaxed">减少整理代码上下文的时间，提升 AI
-                                    代码评审和调试质量，降低手工整理成本。</p>
-                            </div>
-                            <div class="flex flex-wrap gap-2 pt-4 border-t border-primary/5">
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">SwiftUI</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">macOS</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">Claude
-                                    XML</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Terminal Weiming -->
-                    <div class="product-card-container bg-white p-8 flex flex-col border border-primary/5 shadow-sm hover:border-primary/20 transition-all"
-                        onclick="this.classList.toggle('expanded')">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="h-16">
-                                <h3 class="font-headline-sm text-primary mb-1">Terminal Weiming</h3>
-                                <p class="text-[10px] text-muted uppercase tracking-widest font-medium">原生开发者工具
-                                </p>
-                            </div>
-                            <span class="material-symbols-outlined text-primary/20 expand-indicator">expand_more</span>
-                        </div>
-                        <div class="unroll-content space-y-8 pt-4 border-t border-primary/5">
-                            <div class="min-h-[100px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">业务目标与判断
-                                </h4>
-                                <div class="text-sm text-muted leading-relaxed">
-                                    <p class="">目标：提升移动场景下的远程运维效率与安全性。</p>
-                                    <p class="">判断：远程运维涉及多认证与会话观测，移动端工具必须保证便捷与绝对可信。</p>
-                                </div>
-                            </div>
-                            <div class="min-h-[100px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">
-                                    解决方案与数据闭环</h4>
-                                <p class="text-sm text-muted leading-relaxed">开发面向 iOS 的远程优先 SSH 终端，支持 Secure
-                                    Enclave 认证、known_hosts 校验、交互式 PTY 及生物识别锁。</p>
-                            </div>
-                            <div class="min-h-[80px]">
-                                <h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider mb-3">业务结果方向
-                                </h4>
-                                <p class="text-sm text-primary font-bold leading-relaxed">
-                                    提升移动远程运维效率，降低配置成本，增强紧急场景下的工程响应能力与入口安全性。</p>
-                            </div>
-                            <div class="flex flex-wrap gap-2 pt-4 border-t border-primary/5">
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">SwiftUI</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">iOS</span>
-                                <span
-                                    class="text-[9px] px-2 py-1 bg-primary/5 text-primary/60 font-bold border border-primary/10">Secure
-                                    Enclave</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="product-grid"></div>
+            </div>
+        </section>
+        <section class="section-py pt-16 pb-8" id="methodology-header">
+            <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
+                <div class="max-w-3xl mx-auto text-center space-y-4">
+                    <span class="label-caps block">How We Work</span>
+                    <h2 class="heading-section">
+                        <span class="block" data-zh="Weiming Engineering Methodology" data-en="Weiming Engineering Methodology">Weiming Engineering Methodology</span>
+                        <span class="block mt-1 font-light text-muted" data-zh="未名工程方法论" data-en="Engineering Methodology">未名工程方法论</span>
+                    </h2>
+                    <p class="font-body-md text-muted leading-relaxed mx-auto max-w-2xl"
+                        data-zh="我们提供一套严谨的 AI 资产转化方法论。从未名出发，每一步都以结果为导向。"
+                        data-en="We provide a rigorous AI asset transformation methodology. Starting from Weiming, every step is results-driven.">我们提供一套严谨的 AI
+                        资产转化方法论。从未名出发，每一步都以结果为导向。</p>
                 </div>
             </div>
         </section>
-        <section class="section-py" id="pre-project-questions">
+        <section class="pt-16 pb-8 lg:pt-20 lg:pb-10" id="pre-project-questions">
             <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
                 <div class="max-w-3xl mx-auto text-center mb-20 space-y-4">
                     <span class="label-caps block">Strategic Assessment</span>
-                    <h2 class="heading-section">每个项目开始前，我们先问四个问题</h2>
+                    <h2 class="heading-section" data-zh="每个项目开始前，我们先问四个问题" data-en="Before Every Project, We Ask Four Questions">每个项目开始前，我们先问四个问题</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div
                         class="bg-white p-10 border border-primary/5 hover:border-primary/20 transition-all duration-500 relative overflow-hidden group min-h-[220px] card-lift card-hover-glow">
                         <span class="block-watermark-num">01</span>
                         <div class="relative z-10 pt-8">
-                            <h3 class="font-headline-md text-lg text-primary leading-tight font-black">这个问题是否真的值得用 AI
+                            <h3 class="font-headline-md text-lg text-primary leading-tight font-black"
+                                data-zh="这个问题是否真的值得用 AI 解决？"
+                                data-en="Is this problem truly worth solving with AI?">这个问题是否真的值得用 AI
                                 解决？</h3>
                         </div>
                     </div>
@@ -1131,7 +1186,9 @@
                         class="bg-white p-10 border border-primary/5 hover:border-primary/20 transition-all duration-500 relative overflow-hidden group min-h-[220px] card-lift card-hover-glow">
                         <span class="block-watermark-num">02</span>
                         <div class="relative z-10 pt-8">
-                            <h3 class="font-headline-md text-lg text-primary leading-tight font-black">AI 应该进入哪个业务环节？
+                            <h3 class="font-headline-md text-lg text-primary leading-tight font-black"
+                                data-zh="AI 应该进入哪个业务环节？"
+                                data-en="Which business process should AI enter?">AI 应该进入哪个业务环节？
                             </h3>
                         </div>
                     </div>
@@ -1139,7 +1196,9 @@
                         class="bg-white p-10 border border-primary/5 hover:border-primary/20 transition-all duration-500 relative overflow-hidden group min-h-[220px] card-lift card-hover-glow">
                         <span class="block-watermark-num">03</span>
                         <div class="relative z-10 pt-8">
-                            <h3 class="font-headline-md text-lg text-primary leading-tight font-black">如何证明 AI
+                            <h3 class="font-headline-md text-lg text-primary leading-tight font-black"
+                                data-zh="如何证明 AI 真的带来了业务提升？"
+                                data-en="How do we prove AI truly improved business?">如何证明 AI
                                 真的带来了业务提升？</h3>
                         </div>
                     </div>
@@ -1147,78 +1206,68 @@
                         class="bg-white p-10 border border-primary/5 hover:border-primary/20 transition-all duration-500 relative overflow-hidden group min-h-[220px] card-lift card-hover-glow">
                         <span class="block-watermark-num">04</span>
                         <div class="relative z-10 pt-8">
-                            <h3 class="font-headline-md text-lg text-primary leading-tight font-black">数据是否能形成闭环？</h3>
+                            <h3 class="font-headline-md text-lg text-primary leading-tight font-black"
+                                data-zh="数据是否能形成闭环？"
+                                data-en="Can the data form a closed loop?">数据是否能形成闭环？</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Methodology -->
-        <section class="section-py" id="methodology">
+        <section class="pt-8 pb-16 lg:pt-10 lg:pb-20" id="methodology">
             <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
                 <div class="space-y-20">
-                    <div class="max-w-3xl mx-auto text-center space-y-6">
-                        <span class="label-caps block">How We Work</span>
-                        <h2 class="heading-section">
-                            <span class="block">Weiming Engineering Methodology</span>
-                            <span class="block mt-2 font-light text-muted">未名工程方法论</span>
-                        </h2>
-                        <p class="font-body-lg text-muted leading-relaxed mx-auto max-w-2xl">我们提供一套严谨的 AI
-                            资产转化方法论。从未名出发，每一步都以结果为导向。</p>
+                    <div class="max-w-3xl mx-auto text-center mb-16">
+                        <span class="label-caps block mb-4">Collaboration Model</span>
+                        <h2 class="heading-section" data-zh="合作模式" data-en="Collaboration Model">合作模式</h2>
+                        <p class="mt-4 text-muted font-body-md max-w-2xl mx-auto leading-relaxed"
+                            data-zh="根据企业 AI 转型的不同阶段，提供灵活的工程合作方式。"
+                            data-en="Flexible engineering collaboration tailored to different stages of enterprise AI transformation.">根据企业 AI 转型的不同阶段，提供灵活的工程合作方式。</p>
+                        <div class="h-1 w-12 bg-primary mt-6 mx-auto"></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div
                             class="bg-white p-10 border border-primary/5 hover:border-primary/20 transition-all duration-500 relative overflow-hidden group card-lift card-hover-glow">
                             <span class="block-watermark-num">1</span>
                             <div class="relative z-10 pt-8">
-                                <h6
-                                    class="font-label-sm text-[11px] text-primary font-bold uppercase tracking-[0.2em] mb-4">
-                                    AI 工程咨询顾问</h6>
-                                <p class="text-sm text-muted leading-relaxed">当您还不知道 AI 应该怎么做时，我们帮您判断业务价值与技术可行性。</p>
+                                <h6 class="font-label-sm text-[11px] text-primary font-bold uppercase tracking-[0.2em] mb-4" data-zh="AI 工程咨询顾问" data-en="AI Engineering Consultant">AI 工程咨询顾问</h6>
+                                <p class="text-sm text-muted leading-relaxed" data-zh="当您还不知道 AI 应该怎么做时，我们帮您判断业务价值与技术可行性。" data-en="When you're not sure how to approach AI, we help you assess business value and technical feasibility.">当您还不知道 AI 应该怎么做时，我们帮您判断业务价值与技术可行性。</p>
                             </div>
                         </div>
                         <div
                             class="bg-white p-10 border border-primary/5 hover:border-primary/20 transition-all duration-500 relative overflow-hidden group card-lift card-hover-glow">
                             <span class="block-watermark-num">2</span>
                             <div class="relative z-10 pt-8">
-                                <h6
-                                    class="font-label-sm text-[11px] text-primary font-bold uppercase tracking-[0.2em] mb-4">
-                                    AI 产品 MVP 开发</h6>
-                                <p class="text-sm text-muted leading-relaxed">在最短时间内开发出可供真实用户或内部团队使用的第一版系统，快速验证核心假设。
-                                </p>
+                                <h6 class="font-label-sm text-[11px] text-primary font-bold uppercase tracking-[0.2em] mb-4" data-zh="AI 产品 MVP 开发" data-en="AI Product MVP Development">AI 产品 MVP 开发</h6>
+                                <p class="text-sm text-muted leading-relaxed" data-zh="在最短时间内开发出可供真实用户或内部团队使用的第一版系统，快速验证核心假设。" data-en="Build a first version for real users or internal teams in the shortest time to validate core assumptions.">在最短时间内开发出可供真实用户或内部团队使用的第一版系统，快速验证核心假设。</p>
                             </div>
                         </div>
                         <div
                             class="bg-white p-10 border border-primary/5 hover:border-primary/20 transition-all duration-500 relative overflow-hidden group card-lift card-hover-glow">
                             <span class="block-watermark-num">3</span>
                             <div class="relative z-10 pt-8">
-                                <h6
-                                    class="font-label-sm text-[11px] text-primary font-bold uppercase tracking-[0.2em] mb-4">
-                                    智能体系统与工作流</h6>
-                                <p class="text-sm text-muted leading-relaxed">将 AI 深度集成进真实业务流程，实现从“对话框”到“自动化动作”的跨越。
-                                </p>
+                                <h6 class="font-label-sm text-[11px] text-primary font-bold uppercase tracking-[0.2em] mb-4" data-zh="智能体系统与工作流" data-en="AI Agent Systems & Workflows">智能体系统与工作流</h6>
+                                <p class="text-sm text-muted leading-relaxed" data-zh="将 AI 深度集成进真实业务流程，实现从&quot;对话框&quot;到&quot;自动化动作&quot;的跨越。" data-en="Deeply integrate AI into real business workflows, bridging from chat interfaces to automated actions.">将 AI 深度集成进真实业务流程，实现从"对话框"到"自动化动作"的跨越。</p>
                             </div>
                         </div>
                         <div
                             class="bg-white p-10 border border-primary/5 hover:border-primary/20 transition-all duration-500 relative overflow-hidden group card-lift card-hover-glow">
                             <span class="block-watermark-num">4</span>
                             <div class="relative z-10 pt-8">
-                                <h6
-                                    class="font-label-sm text-[11px] text-primary font-bold uppercase tracking-[0.2em] mb-4">
-                                    长期 AI 工程陪跑</h6>
-                                <p class="text-sm text-muted leading-relaxed">作为您的外部工程合伙人，持续迭代 AI 能力，确保技术始终服务于业务增长。
-                                </p>
+                                <h6 class="font-label-sm text-[11px] text-primary font-bold uppercase tracking-[0.2em] mb-4" data-zh="长期 AI 工程陪跑" data-en="Long-term AI Engineering Partnership">长期 AI 工程陪跑</h6>
+                                <p class="text-sm text-muted leading-relaxed" data-zh="作为您的外部工程合伙人，持续迭代 AI 能力，确保技术始终服务于业务增长。" data-en="As your external engineering partner, we continuously iterate AI capabilities to ensure technology drives business growth.">作为您的外部工程合伙人，持续迭代 AI 能力，确保技术始终服务于业务增长。</p>
                             </div>
                         </div>
                     </div>
                     <div
                         class="methodology-banner p-10 text-primary flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
                         <div class="space-y-1">
-                            <h6 class="font-headline-md text-2xl font-black">准备好开始了？</h6>
-                            <p class="text-muted text-sm">预约专家进行 1:1 业务诊断，共同定义您的 AI 路径。</p>
+                            <h6 class="font-headline-md text-2xl font-black" data-zh="准备好开始了？" data-en="Ready to Get Started?">准备好开始了？</h6>
+                            <p class="text-muted text-sm" data-zh="预约专家进行 1:1 业务诊断，共同定义您的 AI 路径。" data-en="Book a 1:1 session with our experts to define your AI roadmap together.">预约专家进行 1:1 业务诊断，共同定义您的 AI 路径。</p>
                         </div>
                         <a class="inline-flex btn-cta px-12 py-4 font-label-md text-xs font-bold uppercase tracking-widest shadow-2xl"
-                            href="#contact">预定 1:1 诊断</a>
+                            href="#contact" data-zh="预定 1:1 诊断" data-en="Book 1:1 Session">预定 1:1 诊断</a>
                     </div>
                 </div>
             </div>
@@ -1228,107 +1277,59 @@
             <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
                 <div class="mb-16">
                     <span class="label-caps block mb-4">Technical Capabilities</span>
-                    <h2 class="heading-section">我们的技术能力，服务于业务结果</h2>
+                    <h2 class="heading-section" data-zh="我们的技术能力，服务于业务结果" data-en="Our Technical Capabilities, Serving Business Results">我们的技术能力，服务于业务结果</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-primary/10">
-                    <div
-                        class="p-8 border-r border-b border-primary/10 group hover:bg-primary/[0.02] transition-colors">
+                    <div class="p-8 lg:p-10 border-r border-b border-primary/10 group hover:bg-primary/[0.02] transition-colors">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-1.5 h-1.5 bg-primary"></div>
-                            <h5 class="font-headline-sm text-base text-primary font-bold uppercase tracking-wider">
-                                复杂数据处理与业务分析闭环</h5>
+                            <h5 class="font-headline-sm text-lg text-primary font-bold uppercase tracking-wider" data-zh="复杂数据处理与业务分析闭环" data-en="Complex Data Processing & Business Analytics Loop">复杂数据处理与业务分析闭环</h5>
                         </div>
-                        <p class="text-xs font-medium text-muted leading-relaxed tracking-tight uppercase">
-                            数据采集 · 数据清洗 · 多源数据整合 · 非结构化数据结构化 · 指标体系设计 · 业务看板 · 自动化报告 · A/B 测试复盘
-                        </p>
+                        <p class="text-sm font-medium text-muted leading-relaxed tracking-tight" data-zh="数据采集 · 数据清洗 · 多源数据整合 · 非结构化数据结构化 · 指标体系设计 · 业务看板 · 自动化报告 · A/B 测试复盘" data-en="Data Collection · Data Cleaning · Multi-source Integration · Unstructured-to-Structured · KPI Design · Business Dashboards · Automated Reporting · A/B Testing">数据采集 · 数据清洗 · 多源数据整合 · 非结构化数据结构化 · 指标体系设计 · 业务看板 · 自动化报告 · A/B 测试复盘</p>
                     </div>
-                    <div
-                        class="p-8 border-r border-b border-primary/10 group hover:bg-primary/[0.02] transition-colors">
+                    <div class="p-8 lg:p-10 border-r border-b border-primary/10 group hover:bg-primary/[0.02] transition-colors">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-1.5 h-1.5 bg-primary"></div>
-                            <h5 class="font-headline-sm text-base text-primary font-bold uppercase tracking-wider">AI
-                                系统工程与产品化</h5>
+                            <h5 class="font-headline-sm text-lg text-primary font-bold uppercase tracking-wider" data-zh="AI 系统工程与产品化" data-en="AI Systems Engineering & Productization">AI 系统工程与产品化</h5>
                         </div>
-                        <p class="text-xs font-medium text-muted leading-relaxed tracking-tight uppercase">
-                            LLM 集成 · RAG 知识库 · 智能体工作流 · 语音识别 · 语义搜索 · 实体抽取 · 结构化输出 · 成本控制 · 日志监控
-                        </p>
+                        <p class="text-sm font-medium text-muted leading-relaxed tracking-tight" data-zh="LLM 集成 · RAG 知识库 · 智能体工作流 · 语音识别 · 语义搜索 · 实体抽取 · 结构化输出 · 成本控制 · 日志监控" data-en="LLM Integration · RAG Knowledge Base · Agent Workflows · Speech Recognition · Semantic Search · Entity Extraction · Structured Output · Cost Control · Log Monitoring">LLM 集成 · RAG 知识库 · 智能体工作流 · 语音识别 · 语义搜索 · 实体抽取 · 结构化输出 · 成本控制 · 日志监控</p>
                     </div>
-                    <div
-                        class="p-8 border-r border-b border-primary/10 group hover:bg-primary/[0.02] transition-colors">
+                    <div class="p-8 lg:p-10 border-r border-b border-primary/10 group hover:bg-primary/[0.02] transition-colors">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-1.5 h-1.5 bg-primary"></div>
-                            <h5 class="font-headline-sm text-base text-primary font-bold uppercase tracking-wider">
-                                业务系统集成</h5>
+                            <h5 class="font-headline-sm text-lg text-primary font-bold uppercase tracking-wider" data-zh="业务系统集成" data-en="Business System Integration">业务系统集成</h5>
                         </div>
-                        <p class="text-xs font-medium text-muted leading-relaxed tracking-tight uppercase">
-                            CRM/ERP/OA 集成 · 客服系统集成 · 支付和订单系统 · 数据仓库 · 第三方 API · 微信生态 · 移动端/Web 后台集成
-                        </p>
+                        <p class="text-sm font-medium text-muted leading-relaxed tracking-tight" data-zh="CRM/ERP/OA 集成 · 客服系统集成 · 支付和订单系统 · 数据仓库 · 第三方 API · 微信生态 · 移动端/Web 后台集成" data-en="CRM/ERP/OA Integration · Customer Service Integration · Payment & Order Systems · Data Warehouse · Third-party APIs · WeChat Ecosystem · Mobile/Web Backend Integration">CRM/ERP/OA 集成 · 客服系统集成 · 支付和订单系统 · 数据仓库 · 第三方 API · 微信生态 · 移动端/Web 后台集成</p>
                     </div>
-                    <div
-                        class="p-8 border-r border-b border-primary/10 group hover:bg-primary/[0.02] transition-colors">
+                    <div class="p-8 lg:p-10 border-r border-b border-primary/10 group hover:bg-primary/[0.02] transition-colors">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-1.5 h-1.5 bg-primary"></div>
-                            <h5 class="font-headline-sm text-base text-primary font-bold uppercase tracking-wider">
-                                产品与多端开发</h5>
+                            <h5 class="font-headline-sm text-lg text-primary font-bold uppercase tracking-wider" data-zh="产品与多端开发" data-en="Product & Multi-platform Development">产品与多端开发</h5>
                         </div>
-                        <p class="text-xs font-medium text-muted leading-relaxed tracking-tight uppercase">
-                            Web 应用 · 管理后台 · 数据看板 · iOS/Android 原生应用 · 微信小程序 · 边缘计算 · 云端部署与持续迭代
-                        </p>
+                        <p class="text-sm font-medium text-muted leading-relaxed tracking-tight" data-zh="Web 应用 · 管理后台 · 数据看板 · iOS/Android 原生应用 · 微信小程序 · 边缘计算 · 云端部署与持续迭代" data-en="Web Apps · Admin Dashboards · Data Dashboards · iOS/Android Native Apps · WeChat Mini Programs · Edge Computing · Cloud Deployment & CI/CD">Web 应用 · 管理后台 · 数据看板 · iOS/Android 原生应用 · 微信小程序 · 边缘计算 · 云端部署与持续迭代</p>
                     </div>
-                    <div
-                        class="p-8 border-r border-b border-primary/10 group hover:bg-primary/[0.02] transition-colors md:col-span-2">
+                    <div class="p-8 lg:p-10 border-r border-b border-primary/10 group hover:bg-primary/[0.02] transition-colors md:col-span-2">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-1.5 h-1.5 bg-primary"></div>
-                            <h5 class="font-headline-sm text-base text-primary font-bold uppercase tracking-wider">
-                                开发者效率与内部工具</h5>
+                            <h5 class="font-headline-sm text-lg text-primary font-bold uppercase tracking-wider" data-zh="开发者效率与内部工具" data-en="Developer Productivity & Internal Tools">开发者效率与内部工具</h5>
                         </div>
-                        <p class="text-xs font-medium text-muted leading-relaxed tracking-tight uppercase">
-                            代码仓库上下文整理 · AI 代码评审辅助 · 远程访问工具 (SSH) · 安全认证 · 工程知识沉淀 · 跨平台工具开发
-                        </p>
+                        <p class="text-sm font-medium text-muted leading-relaxed tracking-tight" data-zh="代码仓库上下文整理 · AI 代码评审辅助 · 远程访问工具 (SSH) · 安全认证 · 工程知识沉淀 · 跨平台工具开发" data-en="Codebase Context Extraction · AI Code Review Assistant · Remote Access Tools (SSH) · Security Authentication · Engineering Knowledge Base · Cross-platform Tool Development">代码仓库上下文整理 · AI 代码评审辅助 · 远程访问工具 (SSH) · 安全认证 · 工程知识沉淀 · 跨平台工具开发</p>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- About Section -->
         <section class="section-py" id="about">
             <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
                     <div class="lg:col-span-5 space-y-8">
                         <span class="label-caps block">About Us</span>
-                        <h2 class="heading-section">关于 Weiming AI</h2>
+                        <h2 class="heading-section" data-zh="关于 Weiming AI" data-en="About Weiming AI">关于 Weiming AI</h2>
                         <div class="space-y-6 font-body-md text-muted leading-relaxed max-w-xl">
-                            <p class="text-justify leading-relaxed">我们是由 Weiming Chen 领衔的 AI
+                            <p class="text-justify leading-relaxed" data-zh="我们是由 Weiming Chen 领衔的 AI 原生产品工程团队，核心骨干常驻福州、香港和墨尔本。我们天然具备国际化协作基因与全球化商业视野。" data-en="We are an AI-native product engineering team led by Weiming Chen, with core members based in Fuzhou, Hong Kong, and Melbourne. We naturally possess an international collaboration DNA and a global business perspective.">我们是由 Weiming Chen 领衔的 AI
                                 原生产品工程团队，核心骨干常驻福州、香港和墨尔本。我们天然具备国际化协作基因与全球化商业视野。</p>
-                            <div class="mt-4"><span class=""
-                                    style='color: #0F172A; font-family: "PingFang SC"; font-size: 12pt;'>
-                                    <font face="宋体">团队最擅长介入的场景，是企业需要一套</font>
-                                </span><b style="color: #0F172A; font-family: PingFang SC; font-size: 12pt;"><span
-                                        class="" style="font-size: 12pt;">
-                                        <font face="宋体">兼具产品前瞻性与工程硬实力的复合团队</font>
-                                    </span></b><span class=""
-                                    style='color: #64748B; font-family: "PingFang SC"; font-size: 12pt;'>
-                                    <font face="Calibri">——</font>
-                                    <font face="宋体">我们能够同时帮企业看清产品定义、理顺复杂数据流、深度集成前沿模型、打磨高标准交付界面，并最终实现系统的安全部署与稳定上线。</font>
-                                </span>
-                                <p class="p"
-                                    style='margin: 5pt 0pt; font-family: "PingFang SC"; font-size: 12pt; color: #64748B;'>
-                                    <span class="" style="font-size: 12pt;">
-                                        <font face="宋体">团队核心成员拥有深厚的国际化教育背景，汇聚了毕业于</font>
-                                    </span><b style="color: #0F172A;"><span class="" style="font-size: 12pt;">
-                                            <font face="宋体">墨尔本大学（</font>University of Melbourne<font face="宋体">）信息系统学士
-                                            </font>
-                                        </span></b><span class="" style="font-size: 12pt;">
-                                        <font face="宋体">、</font>
-                                    </span><b style="color: #0F172A;"><span class="" style="font-size: 12pt;">
-                                            <font face="宋体">密歇根大学（</font>University of Michigan<font face="宋体">
-                                                ）信息学院应用数据科学硕士</font>
-                                        </span></b><span class="" style="font-size: 12pt;">
-                                        <font face="宋体">
-                                            等全球顶尖学府的学术与工程复合型人才。我们坚持将国际前沿的数据科学方法论，与严谨的工业级产品工程实践相结合，确保技术投入精准转化为商业价值。
-                                        </font>
-                                    </span>
-                                </p>
-                            </div>
-                            <p class=""></p>
+                            <p class="text-justify leading-relaxed" data-zh-html="团队最擅长介入的场景，是企业需要一套<span class='text-primary font-bold'>兼具产品前瞻性与工程硬实力的复合团队</span>——我们能够同时帮企业看清产品定义、理顺复杂数据流、深度集成前沿模型、打磨高标准交付界面，并最终实现系统的安全部署与稳定上线。" data-en-html="Our sweet spot is when a company needs <span class='text-primary font-bold'>a team with both product vision and engineering depth</span> — we help you define the product, untangle complex data flows, deeply integrate frontier models, polish high-standard delivery interfaces, and ultimately achieve secure deployment and stable launch.">团队最擅长介入的场景，是企业需要一套<span class="text-primary font-bold">兼具产品前瞻性与工程硬实力的复合团队</span>——我们能够同时帮企业看清产品定义、理顺复杂数据流、深度集成前沿模型、打磨高标准交付界面，并最终实现系统的安全部署与稳定上线。</p>
+                            <p class="text-justify leading-relaxed" data-zh-html="团队核心成员拥有深厚的国际化教育背景，汇聚了毕业于<span class='text-primary font-bold'>墨尔本大学（University of Melbourne）信息系统学士</span>、<span class='text-primary font-bold'>密歇根大学（University of Michigan）信息学院应用数据科学硕士</span>等全球顶尖学府的学术与工程复合型人才。我们坚持将国际前沿的数据科学方法论，与严谨的工业级产品工程实践相结合，确保技术投入精准转化为商业价值。" data-en-html="Our core members hold degrees from world-class institutions, including <span class='text-primary font-bold'>University of Melbourne (BIS)</span> and <span class='text-primary font-bold'>University of Michigan (MS Applied Data Science)</span>. We combine cutting-edge data science methodology with rigorous industrial-grade engineering to ensure technology investment translates precisely into business value.">团队核心成员拥有深厚的国际化教育背景，汇聚了毕业于<span class="text-primary font-bold">墨尔本大学（University of Melbourne）信息系统学士</span>、<span class="text-primary font-bold">密歇根大学（University of Michigan）信息学院应用数据科学硕士</span>等全球顶尖学府的学术与工程复合型人才。我们坚持将国际前沿的数据科学方法论，与严谨的工业级产品工程实践相结合，确保技术投入精准转化为商业价值。</p>
                         </div>
                     </div>
                     <div class="lg:col-span-7">
@@ -1336,55 +1337,53 @@
                             <!-- Languages -->
                             <div>
                                 <h3
-                                    class="font-label-md text-label-sm uppercase tracking-[0.2em] text-primary mb-6 border-b border-primary/10 pb-2">
+                                    class="font-label-md text-label-sm uppercase tracking-[0.2em] text-primary mb-6 border-b border-primary/10 pb-2"
+                                    data-zh="主要开发语言" data-en="Primary Tech Stack">
                                     主要开发语言</h3>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div class="space-y-1">
-                                        <h4 class="font-bold text-primary text-sm uppercase tracking-wider">PYTHON</h4>
-                                        <p class="text-xs text-muted">数据流程、自动化、AI 评估、模型编排。</p>
+                                        <h4 class="font-bold text-primary text-base uppercase tracking-wider">PYTHON</h4>
+                                        <p class="text-sm text-muted" data-zh="数据流程、自动化、AI 评估、模型编排。" data-en="Data pipelines, automation, AI evaluation, model orchestration.">数据流程、自动化、AI 评估、模型编排。</p>
                                     </div>
                                     <div class="space-y-1">
-                                        <h4 class="font-bold text-primary text-sm uppercase tracking-wider">TYPESCRIPT
-                                        </h4>
-                                        <p class="text-xs text-muted">SvelteKit, Hono, Cloudflare Workers, API.
-                                        </p>
+                                        <h4 class="font-bold text-primary text-base uppercase tracking-wider">TYPESCRIPT</h4>
+                                        <p class="text-sm text-muted" data-zh="SvelteKit, Hono, Cloudflare Workers, API。" data-en="SvelteKit, Hono, Cloudflare Workers, APIs.">SvelteKit, Hono, Cloudflare Workers, API.</p>
                                     </div>
                                     <div class="space-y-1">
-                                        <h4 class="font-bold text-primary text-sm uppercase tracking-wider">SWIFT</h4>
-                                        <p class="text-xs text-muted">原生 iOS/macOS 产品、Apple 平台工作流。</p>
+                                        <h4 class="font-bold text-primary text-base uppercase tracking-wider">SWIFT</h4>
+                                        <p class="text-sm text-muted" data-zh="原生 iOS/macOS 产品、Apple 平台工作流。" data-en="Native iOS/macOS products, Apple platform workflows.">原生 iOS/macOS 产品、Apple 平台工作流。</p>
                                     </div>
                                     <div class="space-y-1">
-                                        <h4 class="font-bold text-primary text-sm uppercase tracking-wider">SQL / SHELL
-                                        </h4>
-                                        <p class="text-xs text-muted">数据建模、分析、基础设施自动化运维。</p>
+                                        <h4 class="font-bold text-primary text-base uppercase tracking-wider">SQL / SHELL</h4>
+                                        <p class="text-sm text-muted" data-zh="数据建模、分析、基础设施自动化运维。" data-en="Data modeling, analytics, infrastructure automation.">数据建模、分析、基础设施自动化运维。</p>
                                     </div>
                                 </div>
                             </div>
                             <!-- Track Record -->
                             <div>
                                 <h3
-                                    class="font-label-md text-label-sm uppercase tracking-[0.2em] text-primary mb-6 border-b border-primary/10 pb-2">
-                                    履约记录</h3>
+                                    class="font-label-md text-label-sm uppercase tracking-[0.2em] text-primary mb-6 border-b border-primary/10 pb-2"
+                                    data-zh="履约记录" data-en="Track Record">履约记录</h3>
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                     <div class="space-y-2">
-                                        <h4 class="font-bold text-primary text-sm">企业级基建</h4>
-                                        <p class="text-xs text-muted leading-relaxed">福建省交通运输管理系统 (新三板平台级基建)</p>
+                                        <h4 class="font-bold text-primary text-base" data-zh="企业级基建" data-en="Enterprise Infrastructure">企业级基建</h4>
+                                        <p class="text-sm text-muted leading-relaxed" data-zh="福建省交通运输管理系统 (新三板平台级基建)" data-en="Fujian Provincial Transport Management System (NEEQ platform-level infrastructure)">福建省交通运输管理系统 (新三板平台级基建)</p>
                                     </div>
                                     <div class="space-y-2">
-                                        <h4 class="font-bold text-primary text-sm">医疗 AI 系统</h4>
-                                        <p class="text-xs text-muted leading-relaxed">面向 120 急救全流程的实时结构化工控系统</p>
+                                        <h4 class="font-bold text-primary text-base" data-zh="医疗 AI 系统" data-en="Medical AI System">医疗 AI 系统</h4>
+                                        <p class="text-sm text-muted leading-relaxed" data-zh="面向 120 急救全流程的实时结构化工控系统" data-en="Real-time structured workflow system for the entire 120 emergency process">面向 120 急救全流程的实时结构化工控系统</p>
                                     </div>
                                     <div class="space-y-2">
-                                        <h4 class="font-bold text-primary text-sm">原生产品</h4>
-                                        <p class="text-xs text-muted leading-relaxed">多款面向全球市场的 AI 笔记与自动化工具</p>
+                                        <h4 class="font-bold text-primary text-base" data-zh="原生产品" data-en="Native Products">原生产品</h4>
+                                        <p class="text-sm text-muted leading-relaxed" data-zh="多款面向全球市场的 AI 笔记与自动化工具" data-en="Multiple AI note-taking and automation tools for the global market">多款面向全球市场的 AI 笔记与自动化工具</p>
                                     </div>
                                 </div>
                             </div>
                             <!-- Quote -->
                             <div class="pt-8 border-t border-primary/5">
-                                <p class="font-display text-xl lg:text-2xl text-primary italic leading-relaxed">
-                                    “我们不只是代码的敲击者，而是一群将国际化视野融入本土商业现场，帮企业在复杂业务中构建数据闭环的 AI 产品工程专家。”
-                                </p>
+                                <p class="font-body-lg text-xl lg:text-2xl text-primary font-medium leading-relaxed"
+                                    data-zh-html="&ldquo;我们不只是代码的敲击者，而是一群将国际化视野融入本土商业现场，帮企业在复杂业务中构建数据闭环的 AI 产品工程专家。&rdquo;"
+                                    data-en-html="&ldquo;We are not just coders — we are AI product engineers who blend international perspective with local business execution, helping enterprises build data loops in complex operations.&rdquo;">"我们不只是代码的敲击者，而是一群将国际化视野融入本土商业现场，帮企业在复杂业务中构建数据闭环的 AI 产品工程专家。"</p>
                             </div>
                         </div>
                     </div>
@@ -1398,8 +1397,8 @@
                     <div class="space-y-12">
                         <div class="space-y-6">
                             <span class="label-caps block">Contact</span>
-                            <h2 class="heading-section text-6xl">联系我们</h2>
-                            <p class="font-body-lg text-muted max-w-md">准备好将 AI 投入转化为可量化的业务增量了吗？</p>
+                            <h2 class="heading-section text-6xl" data-zh="联系我们" data-en="Contact Us">联系我们</h2>
+                            <p class="font-body-lg text-muted max-w-md" data-zh="准备好将 AI 投入转化为可量化的业务增量了吗？" data-en="Ready to turn AI investment into measurable business growth?">准备好将 AI 投入转化为可量化的业务增量了吗？</p>
                         </div>
                         <div class="space-y-8">
                             <div class="flex items-start gap-6">
@@ -1420,7 +1419,7 @@
                                 <div>
                                     <span
                                         class="block text-[10px] font-bold text-muted uppercase tracking-widest mb-1">LOCATION</span>
-                                    <p class="text-xl font-medium text-primary">福建省福州市台江区三迪联邦中心702室</p>
+                                    <p class="text-xl font-medium text-primary" data-zh="福建省福州市台江区三迪联邦中心702室" data-en="Room 702, Sandi Federal Center, Taijiang District, Fuzhou, Fujian">福建省福州市台江区三迪联邦中心702室</p>
                                 </div>
                             </div>
                         </div>
@@ -1430,15 +1429,15 @@
                         <form class="space-y-10" id="contact-form">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <div class="space-y-2">
-                                    <label class="text-[11px] font-bold text-muted uppercase tracking-wider">姓名</label>
+                                    <label class="text-[11px] font-bold text-muted uppercase tracking-wider" data-zh="姓名" data-en="Name">姓名</label>
                                     <div class="field-underline">
                                         <input class="placeholder:text-muted/65" name="name" placeholder="张先生/女士"
+                                            data-zh="张先生/女士" data-en="Mr./Ms. Zhang"
                                             required type="text" />
                                     </div>
                                 </div>
                                 <div class="space-y-2">
-                                    <label
-                                        class="text-[11px] font-bold text-muted uppercase tracking-wider">公司邮件</label>
+                                    <label class="text-[11px] font-bold text-muted uppercase tracking-wider" data-zh="公司邮件" data-en="Work Email">公司邮件</label>
                                     <div class="field-underline">
                                         <input class="placeholder:text-muted/65" name="email"
                                             placeholder="name@company.com" required type="email" />
@@ -1446,17 +1445,15 @@
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <label class="text-[11px] font-bold text-muted uppercase tracking-wider">业务需求简述</label>
+                                <label class="text-[11px] font-bold text-muted uppercase tracking-wider" data-zh="业务需求简述" data-en="Project Brief">业务需求简述</label>
                                 <div class="field-underline">
-                                    <textarea class="placeholder:text-muted/65" name="message" placeholder="请简要说明您的挑战"
+                                    <textarea class="placeholder:text-muted/65" name="message" placeholder="请简要说明您的挑战" data-zh="请简要说明您的挑战" data-en="Briefly describe your challenge"
                                         required rows="2"></textarea>
                                 </div>
                             </div>
                             <p class="form-message hidden" id="contact-form-message" role="status"></p>
-                            <button class="w-full btn-cta py-6 font-bold uppercase tracking-[0.2em] shadow-xl"
-                                type="submit">
-                                提交并安排专家咨询
-                            </button>
+                            <button class="w-full btn-cta py-6 font-bold uppercase tracking-[0.2em] shadow-xl" data-zh="提交并安排专家咨询" data-en="Submit & Schedule Expert Consultation"
+                                type="submit">提交并安排专家咨询</button>
                         </form>
                     </div>
                 </div>
@@ -1471,30 +1468,26 @@
                             <span class="font-display font-bold tracking-tighter text-3xl leading-none">WEIMING
                                 AI</span>
                         </div>
-                        <p class="text-on-primary/60 font-body-md max-w-sm leading-relaxed">
-                            精度、工程、业务。为智能企业打造可落地的 AI 闭环，实现生产力飞跃。
-                        </p>
+                        <p class="text-on-primary/60 font-body-md max-w-sm leading-relaxed" data-zh="精度、工程、业务。为智能企业打造可落地的 AI 闭环，实现生产力飞跃。" data-en="Precision, Engineering, Business. Building actionable AI loops for intelligent enterprises, achieving productivity leaps.">精度、工程、业务。为智能企业打造可落地的 AI 闭环，实现生产力飞跃。</p>
                     </div>
                     <div class="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
                         <div class="space-y-6">
-                            <h4 class="text-[10px] font-bold text-on-primary/40 uppercase tracking-widest">探索</h4>
+                            <h4 class="text-[10px] font-bold text-on-primary/40 uppercase tracking-widest" data-zh="探索" data-en="Explore">探索</h4>
                             <ul class="space-y-4 text-sm text-on-primary/70">
-                                <li><a class="hover:text-on-primary transition-colors" href="#capabilities">核心能力</a>
-                                </li>
-                                <li><a class="hover:text-on-primary transition-colors" href="#scenarios">精选案例</a></li>
-                                <li><a class="hover:text-on-primary transition-colors" href="#methodology">工程方法论</a>
-                                </li>
+                                <li><a class="hover:text-on-primary transition-colors" href="#capabilities" data-zh="核心能力" data-en="Capabilities">核心能力</a></li>
+                                <li><a class="hover:text-on-primary transition-colors" href="#scenarios" data-zh="精选案例" data-en="Cases">精选案例</a></li>
+                                <li><a class="hover:text-on-primary transition-colors" href="#methodology" data-zh="工程方法论" data-en="Methodology">工程方法论</a></li>
                             </ul>
                         </div>
                         <div class="space-y-6">
-                            <h4 class="text-[10px] font-bold text-on-primary/40 uppercase tracking-widest">法律</h4>
+                            <h4 class="text-[10px] font-bold text-on-primary/40 uppercase tracking-widest" data-zh="法律" data-en="Legal">法律</h4>
                             <ul class="space-y-4 text-sm text-on-primary/70">
-                                <li><a class="hover:text-on-primary transition-colors" href="#">Privacy</a></li>
-                                <li><a class="hover:text-on-primary transition-colors" href="#">Terms</a></li>
+                                <li><a class="hover:text-on-primary transition-colors" href="#" data-zh="隐私政策" data-en="Privacy">隐私政策</a></li>
+                                <li><a class="hover:text-on-primary transition-colors" href="#" data-zh="使用条款" data-en="Terms">使用条款</a></li>
                             </ul>
                         </div>
                         <div class="space-y-6">
-                            <h4 class="text-[10px] font-bold text-on-primary/40 uppercase tracking-widest">社交</h4>
+                            <h4 class="text-[10px] font-bold text-on-primary/40 uppercase tracking-widest" data-zh="社交" data-en="Social">社交</h4>
                             <ul class="space-y-4 text-sm text-on-primary/70">
                                 <li><a class="hover:text-on-primary transition-colors" href="#">LinkedIn</a></li>
                                 <li><a class="hover:text-on-primary transition-colors" href="#">WeChat</a></li>
@@ -1541,14 +1534,14 @@
                         <div class="space-y-4 text-left">
                             <div class="flex items-center gap-3 text-primary">
                                 <span class="material-symbols-outlined">target</span>
-                                <h3 class="font-bold uppercase tracking-wider text-sm">底层逻辑</h3>
+                                <h3 class="font-bold uppercase tracking-wider text-sm" data-zh="底层逻辑" data-en="Core Logic">底层逻辑</h3>
                             </div>
                             <p class="text-muted text-sm leading-relaxed text-left" id="expertise-logic"></p>
                         </div>
                         <div class="space-y-4 text-left">
                             <div class="flex items-center gap-3 text-primary">
                                 <span class="material-symbols-outlined">trending_up</span>
-                                <h3 class="font-bold uppercase tracking-wider text-sm">业务价值</h3>
+                                <h3 class="font-bold uppercase tracking-wider text-sm" data-zh="业务价值" data-en="Business Value">业务价值</h3>
                             </div>
                             <p class="text-muted text-sm leading-relaxed text-left" id="expertise-value"></p>
                         </div>
@@ -1556,10 +1549,46 @@
                     <div class="space-y-4 text-left">
                         <div class="flex items-center gap-3 text-primary">
                             <span class="material-symbols-outlined">deployed_code</span>
-                            <h3 class="font-bold uppercase tracking-wider text-sm">技术与交付</h3>
+                            <h3 class="font-bold uppercase tracking-wider text-sm" data-zh="技术与交付" data-en="Technology & Delivery">技术与交付</h3>
                         </div>
                         <ul class="space-y-3 text-muted text-sm leading-relaxed" id="expertise-delivery"></ul>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT DETAIL Modal -->
+    <div class="fixed inset-0 z-[100] hidden modal-backdrop flex items-center justify-center p-4 md:p-8 bg-primary/40 backdrop-blur-sm"
+        id="product-detail-modal" onclick="if(event.target===this)closeModal('product-detail-modal')">
+        <div class="modal-panel bg-background w-full max-w-4xl max-h-[90vh] overflow-y-auto relative shadow-2xl rounded-lg"
+            onclick="event.stopPropagation()">
+            <div
+                class="sticky top-0 bg-background/95 backdrop-blur-md z-10 px-6 md:px-8 py-6 border-b border-primary/5 flex justify-between items-start gap-4">
+                <div class="space-y-1 min-w-0">
+                    <span class="text-[10px] font-bold text-primary/40 uppercase tracking-widest">PRODUCT DETAIL</span>
+                    <h2 class="text-xl md:text-2xl lg:text-3xl font-display font-bold text-primary"
+                        id="product-modal-title"></h2>
+                    <p class="text-sm text-muted uppercase tracking-widest font-medium" id="product-modal-subtitle"></p>
+                </div>
+                <button class="p-2 hover:bg-primary/5 rounded-full transition-colors shrink-0"
+                    onclick="closeModal('product-detail-modal')" type="button">
+                    <span class="material-symbols-outlined text-primary/60">close</span>
+                </button>
+            </div>
+            <div class="p-6 md:p-8 space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="product-modal-grid"></div>
+                <div class="bg-surface-container p-6 md:p-8 border-l-4 border-primary">
+                    <div class="flex items-center gap-3 text-primary mb-4">
+                        <span class="material-symbols-outlined">trending_up</span>
+                        <h3 class="font-bold uppercase tracking-wider text-sm" data-zh="业务结果方向" data-en="Expected Outcomes">业务结果方向</h3>
+                    </div>
+                    <p class="text-primary font-medium leading-relaxed text-sm" id="product-modal-result"></p>
+                </div>
+                <div class="pt-4 border-t border-primary/5">
+                    <span class="text-[10px] font-bold text-primary/40 uppercase tracking-widest block mb-4">TECHNICAL
+                        STACK</span>
+                    <div class="flex flex-wrap gap-3" id="product-modal-stack"></div>
                 </div>
             </div>
         </div>
@@ -1588,7 +1617,7 @@
                 <div class="bg-surface-container p-6 md:p-8 border-l-4 border-primary">
                     <div class="flex items-center gap-3 text-primary mb-4">
                         <span class="material-symbols-outlined">trending_up</span>
-                        <h3 class="font-bold uppercase tracking-wider text-sm">业务结果</h3>
+                        <h3 class="font-bold uppercase tracking-wider text-sm" data-zh="业务结果" data-en="Business Results">业务结果</h3>
                     </div>
                     <p class="text-primary font-medium leading-relaxed text-sm" id="case-study-result"></p>
                 </div>
@@ -1601,98 +1630,163 @@
         </div>
     </div>
 
+    <nav id="side-nav">
+        <a class="side-nav-item" href="#home" data-section="home">
+            <span class="side-nav-label" data-zh="首页" data-en="Home">首页</span>
+            <span class="side-nav-dot"></span>
+        </a>
+        <a class="side-nav-item" href="#capabilities" data-section="capabilities">
+            <span class="side-nav-label" data-zh="技术能力" data-en="Capabilities">技术能力</span>
+            <span class="side-nav-dot"></span>
+        </a>
+        <a class="side-nav-item" href="#scenarios" data-section="scenarios">
+            <span class="side-nav-label" data-zh="案例" data-en="Cases">案例</span>
+            <span class="side-nav-dot"></span>
+        </a>
+        <a class="side-nav-item" href="#product-matrix" data-section="product-matrix">
+            <span class="side-nav-label" data-zh="产品" data-en="Products">产品</span>
+            <span class="side-nav-dot"></span>
+        </a>
+        <a class="side-nav-item" href="#methodology" data-section="methodology">
+            <span class="side-nav-label" data-zh="合作模式" data-en="Model">合作模式</span>
+            <span class="side-nav-dot"></span>
+        </a>
+        <a class="side-nav-item" href="#about" data-section="about">
+            <span class="side-nav-label" data-zh="关于" data-en="About">关于</span>
+            <span class="side-nav-dot"></span>
+        </a>
+        <a class="side-nav-item" href="#contact" data-section="contact">
+            <span class="side-nav-label" data-zh="联系" data-en="Contact">联系</span>
+            <span class="side-nav-dot"></span>
+        </a>
+    </nav>
+
     <script>
         const expertiseData = {
             'data-loop': {
-                title: '处理复杂数据，建立业务分析闭环',
-                logic: 'AI 的前提不是模型，而是数据和流程。我们帮助企业从多源、多模态、非结构化数据中提炼可追踪的业务指标，让 AI 建立在真实业务语境之上，而非孤立的技术实验。',
-                value: 'AI 投入应可被衡量、可被复盘、可被持续优化。通过指标体系与数据闭环，让每一次模型迭代都能对应到收入、人效、成本或决策速度等可量化结果。',
+                title: { zh: '处理复杂数据，建立业务分析闭环', en: 'Complex Data Processing & Business Analytics Loop' },
+                logic: { zh: 'AI 的前提不是模型，而是数据和流程。我们帮助企业从多源、多模态、非结构化数据中提炼可追踪的业务指标，让 AI 建立在真实业务语境之上，而非孤立的技术实验。', en: 'The foundation of AI is not the model — it is data and processes. We help enterprises extract trackable business metrics from multi-source, multimodal, unstructured data, grounding AI in real business context rather than isolated tech experiments.' },
+                value: { zh: 'AI 投入应可被衡量、可被复盘、可被持续优化。通过指标体系与数据闭环，让每一次模型迭代都能对应到收入、人效、成本或决策速度等可量化结果。', en: 'AI investment should be measurable, reviewable, and continuously optimizable. Through metrics and data loops, every model iteration maps to quantifiable outcomes — revenue, efficiency, cost, or decision speed.' },
                 delivery: [
-                    '指标体系设计与业务看板搭建',
-                    '多源数据采集、清洗与结构化处理',
-                    '非结构化数据向业务指标转化',
-                    '自动化报告与 A/B 测试复盘机制'
+                    { zh: '指标体系设计与业务看板搭建', en: 'KPI framework design & business dashboard setup' },
+                    { zh: '多源数据采集、清洗与结构化处理', en: 'Multi-source data collection, cleaning & structuring' },
+                    { zh: '非结构化数据向业务指标转化', en: 'Unstructured data to business metric conversion' },
+                    { zh: '自动化报告与 A/B 测试复盘机制', en: 'Automated reporting & A/B testing review' }
                 ]
             },
             'roi': {
-                title: '让 AI 投入呈现可量化业务的结果',
-                logic: '许多 AI 项目失败，不是因为模型不够强，而是因为从未定义「成功」的标准。我们在项目启动前即明确 ROI 衡量维度，确保技术投入与商业目标对齐。',
-                value: '基于 Weiming ROI 评估框架，为每一项 AI 特性建立追踪看板，让 CIO/CEO 清晰洞察投入产出比，使 AI 从成本中心转变为可验证的价值引擎。',
+                title: { zh: '让 AI 投入呈现可量化业务的结果', en: 'Make AI Investment Show Measurable Business Results' },
+                logic: { zh: '许多 AI 项目失败，不是因为模型不够强，而是因为从未定义「成功」的标准。我们在项目启动前即明确 ROI 衡量维度，确保技术投入与商业目标对齐。', en: 'Many AI projects fail not because the model is weak, but because the definition of "success" was never established. We define ROI metrics before project kickoff, ensuring technology investment aligns with business goals.' },
+                value: { zh: '基于 Weiming ROI 评估框架，为每一项 AI 特性建立追踪看板，让 CIO/CEO 清晰洞察投入产出比，使 AI 从成本中心转变为可验证的价值引擎。', en: 'Based on the Weiming ROI framework, we build tracking dashboards for every AI feature, giving CIO/CEO clear visibility into ROI — transforming AI from a cost center into a verifiable value engine.' },
                 delivery: [
-                    'Weiming ROI 评估框架设计与落地',
-                    'AI 特性级追踪看板与数据埋点',
-                    '收入、人效、时间、成本等多维指标追踪',
-                    '管理层决策报告与持续优化机制'
+                    { zh: 'Weiming ROI 评估框架设计与落地', en: 'Weiming ROI framework design & implementation' },
+                    { zh: 'AI 特性级追踪看板与数据埋点', en: 'AI feature-level tracking dashboards & event tracking' },
+                    { zh: '收入、人效、时间、成本等多维指标追踪', en: 'Multi-dimensional metrics: revenue, efficiency, time, cost' },
+                    { zh: '管理层决策报告与持续优化机制', en: 'Executive decision reports & continuous optimization' }
                 ]
             },
             'capability': {
-                title: '把技术能力转化为真实业务能力',
-                logic: '技术能力本身不产生价值，只有被一线员工在日常工作中使用并触发业务动作时，AI 才真正落地。我们深入业务现场，理解真实工作流与使用习惯。',
-                value: '开发符合直觉的 AI 原生应用，确保 AI 真正被员工采纳并产生实际业务动作，而非停留在演示层面。从工具到习惯，完成技术到能力的转化。',
+                title: { zh: '把技术能力转化为真实业务能力', en: 'Transform Technical Capability Into Real Business Capability' },
+                logic: { zh: '技术能力本身不产生价值，只有被一线员工在日常工作中使用并触发业务动作时，AI 才真正落地。我们深入业务现场，理解真实工作流与使用习惯。', en: 'Technical capability alone creates no value — AI only delivers when frontline employees use it daily to trigger real business actions. We immerse ourselves in business operations to understand actual workflows and habits.' },
+                value: { zh: '开发符合直觉的 AI 原生应用，确保 AI 真正被员工采纳并产生实际业务动作，而非停留在演示层面。从工具到习惯，完成技术到能力的转化。', en: 'We build intuitive AI-native applications that employees actually adopt — moving beyond demos to real business actions. From tools to habits, completing the transformation from technology to capability.' },
                 delivery: [
-                    '一线场景调研与业务流程梳理',
-                    'AI 原生应用界面与交互设计',
-                    '员工培训与使用习惯养成机制',
-                    '业务动作追踪与效果验证'
+                    { zh: '一线场景调研与业务流程梳理', en: 'Frontline scenario research & business process mapping' },
+                    { zh: 'AI 原生应用界面与交互设计', en: 'AI-native application UI & interaction design' },
+                    { zh: '员工培训与使用习惯养成机制', en: 'Employee training & habit formation programs' },
+                    { zh: '业务动作追踪与效果验证', en: 'Business action tracking & effectiveness validation' }
                 ]
             }
         };
 
         const caseStudyData = {
             jijiu: {
-                title: 'JIJIU AI 急救 AI 系统',
+                title: { zh: 'JIJIU AI 急救 AI 系统', en: 'JIJIU AI Emergency System' },
                 sections: [
-                    { icon: 'target', label: '业务目标', text: '围绕急救救治率和急救响应效率，减少院前急救流程中的信息损耗和时间浪费。' },
-                    { icon: 'psychology', label: '业务判断', text: '急救语音信息高度关键，传统人工记录易延迟、遗漏。AI 的价值在于将高时效的临床语音快速转化为调度、救治系统可直接使用的数据。' },
-                    { icon: 'build', label: '解决方案', text: '设计并工程化医疗语音 AI 工作流，将实时转写、批量音频处理、预案匹配和院前记录生成无缝结合。' },
-                    { icon: 'sync', label: '数据闭环', text: '沉淀急救语音、转写结果、预案匹配度、记录质量和流程耗时，为医疗质控与模型评估提供基础。' }
+                    { icon: 'target', label: { zh: '业务目标', en: 'Goal' }, text: { zh: '围绕急救救治率和急救响应效率，减少院前急救流程中的信息损耗和时间浪费。', en: 'Improve emergency survival rates and response efficiency by reducing information loss and time waste in pre-hospital workflows.' } },
+                    { icon: 'psychology', label: { zh: '业务判断', en: 'Insight' }, text: { zh: '急救语音信息高度关键，传统人工记录易延迟、遗漏。AI 的价值在于将高时效的临床语音快速转化为调度、救治系统可直接使用的数据。', en: 'Emergency voice data is critical — manual recording is slow and error-prone. AI\'s value lies in rapidly converting time-sensitive clinical speech into data that dispatch and treatment systems can use directly.' } },
+                    { icon: 'build', label: { zh: '解决方案', en: 'Solution' }, text: { zh: '设计并工程化医疗语音 AI 工作流，将实时转写、批量音频处理、预案匹配和院前记录生成无缝结合。', en: 'Designed and engineered a medical voice AI workflow, seamlessly combining real-time transcription, batch audio processing, protocol matching, and pre-hospital record generation.' } },
+                    { icon: 'sync', label: { zh: '数据闭环', en: 'Data Loop' }, text: { zh: '沉淀急救语音、转写结果、预案匹配度、记录质量和流程耗时，为医疗质控与模型评估提供基础。', en: 'Accumulating emergency audio, transcription results, protocol match quality, record accuracy, and process timing — providing a foundation for medical quality control and model evaluation.' } }
                 ],
-                result: '节省记录时间，减少重复沟通，提高信息完整度，提升院前急救质量与响应效率。',
-                stack: ['医疗 ASR', '实时转写', '急救预案匹配', '结构化记录生成', '医疗 API', 'AI 模型测试框架', '系统工程']
+                result: { zh: '节省记录时间，减少重复沟通，提高信息完整度，提升院前急救质量与响应效率。', en: 'Saved recording time, reduced redundant communication, improved data completeness, and enhanced pre-hospital care quality and response efficiency.' },
+                stack: [
+                    { label: '医疗 ASR', type: 'ai' },
+                    { label: '实时转写', type: 'tech' },
+                    { label: '急救预案匹配', type: 'ai' },
+                    { label: '结构化记录生成', type: 'data' },
+                    { label: '医疗 API', type: 'tech' },
+                    { label: 'AI 模型测试框架', type: 'ai' },
+                    { label: '系统工程', type: 'tech' }
+                ]
             },
             logistics: {
-                title: '物流与复杂业务系统',
+                title: { zh: '物流与复杂业务系统', en: 'Logistics & Complex Business Systems' },
                 sections: [
-                    { icon: 'target', label: '业务目标', text: '实现物流全流程数字化与可分析化，降低多节点协调的人工成本，提升运营决策效率。' },
-                    { icon: 'psychology', label: '业务判断', text: '复杂业务系统的瓶颈往往在信息孤岛与人工协调。AI 应切入高频、可量化的流程节点，而非全面替换现有系统。' },
-                    { icon: 'build', label: '解决方案', text: '从业务架构出发重构数据流，构建自动化调度、异常预警与运营分析看板，打通仓储、运输、配送多环节。' },
-                    { icon: 'sync', label: '数据闭环', text: '沉淀订单、时效、异常、成本等运营数据，持续优化调度策略与资源配置模型。' }
+                    { icon: 'target', label: { zh: '业务目标', en: 'Goal' }, text: { zh: '实现物流全流程数字化与可分析化，降低多节点协调的人工成本，提升运营决策效率。', en: 'Digitize and analyze the entire logistics workflow, reducing manual coordination costs across nodes and improving operational decision-making.' } },
+                    { icon: 'psychology', label: { zh: '业务判断', en: 'Insight' }, text: { zh: '复杂业务系统的瓶颈往往在信息孤岛与人工协调。AI 应切入高频、可量化的流程节点，而非全面替换现有系统。', en: 'The bottleneck in complex business systems is information silos and manual coordination. AI should target high-frequency, quantifiable process nodes — not replace entire systems.' } },
+                    { icon: 'build', label: { zh: '解决方案', en: 'Solution' }, text: { zh: '从业务架构出发重构数据流，构建自动化调度、异常预警与运营分析看板，打通仓储、运输、配送多环节。', en: 'Restructured data flows from business architecture, building automated scheduling, anomaly alerts, and operations dashboards across warehousing, transport, and delivery.' } },
+                    { icon: 'sync', label: { zh: '数据闭环', en: 'Data Loop' }, text: { zh: '沉淀订单、时效、异常、成本等运营数据，持续优化调度策略与资源配置模型。', en: 'Accumulating order, timing, anomaly, and cost data — continuously optimizing scheduling strategies and resource allocation models.' } }
                 ],
-                result: '降低人工协调成本，缩短异常响应时间，提升物流运营透明度与决策速度。',
-                stack: ['业务系统集成', '数据仓库', '自动化工作流', '运营看板', '异常预警', 'API 编排']
+                result: { zh: '降低人工协调成本，缩短异常响应时间，提升物流运营透明度与决策速度。', en: 'Reduced manual coordination costs, shortened anomaly response time, and improved logistics transparency and decision speed.' },
+                stack: [
+                    { label: '业务系统集成', type: 'tech' },
+                    { label: '数据仓库', type: 'data' },
+                    { label: '自动化工作流', type: 'tech' },
+                    { label: '运营看板', type: 'data' },
+                    { label: '异常预警', type: 'ai' },
+                    { label: 'API 编排', type: 'tech' }
+                ]
             },
             esports: {
-                title: 'Dreamer eSports 追梦电竞',
+                title: { zh: 'Dreamer eSports 追梦电竞', en: 'Dreamer eSports' },
                 sections: [
-                    { icon: 'target', label: '业务目标', text: '为职业电竞战队提供高精细度数据采集与实时分析能力，支撑战术决策与选手表现优化。' },
-                    { icon: 'psychology', label: '业务判断', text: '电竞竞技的胜负往往取决于毫秒级决策。数据的价值在于将比赛中的隐性模式转化为可复盘、可训练的战术洞察。' },
-                    { icon: 'build', label: '解决方案', text: '构建未来电竞竞技场接口与竞技分析看板，实现比赛数据实时采集、多维分析与战术可视化。' },
-                    { icon: 'sync', label: '数据闭环', text: '沉淀比赛事件、选手操作、战术执行等数据，持续迭代分析模型与训练方案。' }
+                    { icon: 'target', label: { zh: '业务目标', en: 'Goal' }, text: { zh: '为职业电竞战队提供高精细度数据采集与实时分析能力，支撑战术决策与选手表现优化。', en: 'Provide professional esports teams with high-precision data collection and real-time analysis to support tactical decisions and player performance optimization.' } },
+                    { icon: 'psychology', label: { zh: '业务判断', en: 'Insight' }, text: { zh: '电竞竞技的胜负往往取决于毫秒级决策。数据的价值在于将比赛中的隐性模式转化为可复盘、可训练的战术洞察。', en: 'Esports outcomes often hinge on millisecond-level decisions. Data\'s value lies in converting hidden match patterns into reviewable, trainable tactical insights.' } },
+                    { icon: 'build', label: { zh: '解决方案', en: 'Solution' }, text: { zh: '构建未来电竞竞技场接口与竞技分析看板，实现比赛数据实时采集、多维分析与战术可视化。', en: 'Built next-gen esports arena interfaces and competitive analytics dashboards with real-time match data collection, multi-dimensional analysis, and tactical visualization.' } },
+                    { icon: 'sync', label: { zh: '数据闭环', en: 'Data Loop' }, text: { zh: '沉淀比赛事件、选手操作、战术执行等数据，持续迭代分析模型与训练方案。', en: 'Accumulating match events, player actions, and tactical execution data — continuously iterating analysis models and training programs.' } }
                 ],
-                result: '提升战术复盘效率，增强选手训练针对性，为战队管理提供数据驱动的决策支持。',
-                stack: ['实时数据采集', '竞技分析看板', '战术可视化', 'API 接口', '数据建模']
+                result: { zh: '提升战术复盘效率，增强选手训练针对性，为战队管理提供数据驱动的决策支持。', en: 'Improved tactical review efficiency, enhanced targeted training, and provided data-driven decision support for team management.' },
+                stack: [
+                    { label: '实时数据采集', type: 'data' },
+                    { label: '竞技分析看板', type: 'data' },
+                    { label: '战术可视化', type: 'data' },
+                    { label: 'API 接口', type: 'tech' },
+                    { label: '数据建模', type: 'ai' }
+                ]
             },
             seo: {
-                title: 'Google 收购：SEO/SEM',
+                title: { zh: 'Google 收购：SEO/SEM', en: 'Google Acquisition: SEO/SEM' },
                 sections: [
-                    { icon: 'target', label: '业务目标', text: '为专业营销团队打造流量分析与优化平台，提升自然流量转化率，降低付费搜索成本。' },
-                    { icon: 'psychology', label: '业务判断', text: 'SEO/SEM 的核心挑战是海量关键词与竞争态势的快速变化。AI 应帮助团队从数据噪音中提取可执行的优化策略。' },
-                    { icon: 'build', label: '解决方案', text: '构建 AI 驱动的流量分析平台，整合搜索排名、竞品监控、内容优化建议与投放效果追踪。' },
-                    { icon: 'sync', label: '数据闭环', text: '沉淀关键词表现、内容转化、投放 ROI 等数据，持续优化 SEO/SEM 策略与内容生产方向。' }
+                    { icon: 'target', label: { zh: '业务目标', en: 'Goal' }, text: { zh: '为专业营销团队打造流量分析与优化平台，提升自然流量转化率，降低付费搜索成本。', en: 'Build a traffic analysis and optimization platform for marketing teams, boosting organic conversion rates and reducing paid search costs.' } },
+                    { icon: 'psychology', label: { zh: '业务判断', en: 'Insight' }, text: { zh: 'SEO/SEM 的核心挑战是海量关键词与竞争态势的快速变化。AI 应帮助团队从数据噪音中提取可执行的优化策略。', en: 'The core challenge of SEO/SEM is the rapid change in massive keyword landscapes and competitive dynamics. AI should help teams extract actionable optimization strategies from data noise.' } },
+                    { icon: 'build', label: { zh: '解决方案', en: 'Solution' }, text: { zh: '构建 AI 驱动的流量分析平台，整合搜索排名、竞品监控、内容优化建议与投放效果追踪。', en: 'Built an AI-driven traffic analysis platform integrating search rankings, competitor monitoring, content optimization recommendations, and campaign performance tracking.' } },
+                    { icon: 'sync', label: { zh: '数据闭环', en: 'Data Loop' }, text: { zh: '沉淀关键词表现、内容转化、投放 ROI 等数据，持续优化 SEO/SEM 策略与内容生产方向。', en: 'Accumulating keyword performance, content conversion, and campaign ROI data — continuously optimizing SEO/SEM strategies and content production.' } }
                 ],
-                result: '提升自然流量转化率，降低付费搜索成本，加快营销团队决策与优化迭代速度。',
-                stack: ['SEO 分析', 'SEM 优化', '竞品监控', 'AI 内容洞察', '流量看板', 'ROI 追踪']
+                result: { zh: '提升自然流量转化率，降低付费搜索成本，加快营销团队决策与优化迭代速度。', en: 'Improved organic conversion rates, reduced paid search costs, and accelerated marketing team decision-making and optimization cycles.' },
+                stack: [
+                    { label: 'SEO 分析', type: 'data' },
+                    { label: 'SEM 优化', type: 'data' },
+                    { label: '竞品监控', type: 'data' },
+                    { label: 'AI 内容洞察', type: 'ai' },
+                    { label: '流量看板', type: 'data' },
+                    { label: 'ROI 追踪', type: 'data' }
+                ]
             },
             leukaemia: {
-                title: 'Leukaemia Foundation 内容管理系统',
+                title: { zh: 'Leukaemia Foundation 内容管理系统', en: 'Leukaemia Foundation CMS' },
                 sections: [
-                    { icon: 'target', label: '业务目标', text: '为公益组织打造现代化内容管理与数字资产平台，大幅提升内容生产效率与传播覆盖面。' },
-                    { icon: 'psychology', label: '业务判断', text: '公益组织的内容生产往往依赖志愿者与有限的全职团队。系统应降低发布门槛，而非增加操作复杂度。' },
-                    { icon: 'build', label: '解决方案', text: '定制内容管理系统，整合数字资产管理、多频道发布与工作流审批，支持多语言与无障碍访问。' },
-                    { icon: 'sync', label: '数据闭环', text: '沉淀内容发布、阅读互动、捐赠转化等数据，持续优化内容策略与传播效果。' }
+                    { icon: 'target', label: { zh: '业务目标', en: 'Goal' }, text: { zh: '为公益组织打造现代化内容管理与数字资产平台，大幅提升内容生产效率与传播覆盖面。', en: 'Build a modern content management and digital asset platform for non-profits, dramatically improving content production efficiency and outreach.' } },
+                    { icon: 'psychology', label: { zh: '业务判断', en: 'Insight' }, text: { zh: '公益组织的内容生产往往依赖志愿者与有限的全职团队。系统应降低发布门槛，而非增加操作复杂度。', en: 'Non-profit content production relies on volunteers and limited full-time staff. Systems should lower the publishing barrier, not add complexity.' } },
+                    { icon: 'build', label: { zh: '解决方案', en: 'Solution' }, text: { zh: '定制内容管理系统，整合数字资产管理、多频道发布与工作流审批，支持多语言与无障碍访问。', en: 'Custom CMS integrating digital asset management, multi-channel publishing, workflow approvals, with multi-language and accessibility support.' } },
+                    { icon: 'sync', label: { zh: '数据闭环', en: 'Data Loop' }, text: { zh: '沉淀内容发布、阅读互动、捐赠转化等数据，持续优化内容策略与传播效果。', en: 'Accumulating content publishing, engagement, and donation conversion data — continuously optimizing content strategy and outreach effectiveness.' } }
                 ],
-                result: '大幅提升内容生产效率，扩大公益信息传播覆盖面，降低内容管理运营成本。',
-                stack: ['内容管理 CMS', '数字资产管理', '多频道发布', '工作流审批', '数据分析']
+                result: { zh: '大幅提升内容生产效率，扩大公益信息传播覆盖面，降低内容管理运营成本。', en: 'Dramatically improved content production efficiency, expanded outreach coverage, and reduced content management operational costs.' },
+                stack: [
+                    { label: '内容管理 CMS', type: 'platform' },
+                    { label: '数字资产管理', type: 'platform' },
+                    { label: '多频道发布', type: 'platform' },
+                    { label: '工作流审批', type: 'tech' },
+                    { label: '数据分析', type: 'data' }
+                ]
             }
         };
 
@@ -1719,33 +1813,31 @@
         function openExpertiseModal(id) {
             const data = expertiseData[id];
             if (!data) return;
-            document.getElementById('expertise-modal-title').textContent = data.title;
-            document.getElementById('expertise-logic').textContent = data.logic;
-            document.getElementById('expertise-value').textContent = data.value;
+            document.getElementById('expertise-modal-title').textContent = t(data.title);
+            document.getElementById('expertise-logic').textContent = t(data.logic);
+            document.getElementById('expertise-value').textContent = t(data.value);
             const deliveryList = document.getElementById('expertise-delivery');
-            deliveryList.innerHTML = data.delivery.map(item => '<li class="flex gap-2"><span class="text-primary shrink-0">·</span><span>' + item + '</span></li>').join('');
+            deliveryList.innerHTML = data.delivery.map(item => '<li class="flex gap-2"><span class="text-primary shrink-0">·</span><span>' + t(item) + '</span></li>').join('');
             openModal('expertise-detail-modal');
         }
 
         function openCaseStudyModal(id) {
             const data = caseStudyData[id];
             if (!data) return;
-            document.getElementById('case-study-modal-title').textContent = data.title;
+            document.getElementById('case-study-modal-title').textContent = t(data.title);
             const grid = document.getElementById('case-study-grid');
             grid.innerHTML = data.sections.map(s =>
                 '<div class="space-y-4">' +
                 '<div class="flex items-center gap-3 text-primary">' +
                 '<span class="material-symbols-outlined">' + s.icon + '</span>' +
-                '<h3 class="font-bold uppercase tracking-wider text-sm">' + s.label + '</h3>' +
+                '<h3 class="font-bold uppercase tracking-wider text-sm">' + t(s.label) + '</h3>' +
                 '</div>' +
-                '<p class="text-muted text-sm leading-relaxed">' + s.text + '</p>' +
+                '<p class="text-muted text-sm leading-relaxed">' + t(s.text) + '</p>' +
                 '</div>'
             ).join('');
-            document.getElementById('case-study-result').textContent = data.result;
+            document.getElementById('case-study-result').textContent = t(data.result);
             const stackEl = document.getElementById('case-study-stack');
-            stackEl.innerHTML = data.stack.map(tag =>
-                '<span class="px-3 py-1.5 bg-primary/5 text-primary/60 text-[11px] font-bold uppercase tracking-wider">' + tag + '</span>'
-            ).join('');
+            stackEl.innerHTML = renderProductTags(data.stack);
             openModal('case-study-detail-modal');
         }
 
@@ -1756,15 +1848,18 @@
             }
         });
 
-        const navSectionIds = ['home', 'insights', 'scenarios', 'capabilities', 'methodology', 'about'];
+        const navSectionIds = ['home', 'capabilities', 'scenarios', 'product-matrix', 'methodology', 'about', 'contact'];
         let activeNavId = 'home';
         let scrollSpyLocked = false;
 
         function setActiveNav(sectionId) {
             if (!sectionId || activeNavId === sectionId) return;
             activeNavId = sectionId;
-            document.querySelectorAll('[data-nav]').forEach(link => {
+            document.querySelectorAll('[data-nav]').forEach(function (link) {
                 link.classList.toggle('nav-link-active', link.dataset.nav === sectionId);
+            });
+            document.querySelectorAll('.side-nav-item').forEach(function (item) {
+                item.classList.toggle('active', item.dataset.section === sectionId);
             });
         }
 
@@ -1854,48 +1949,228 @@
         }
 
         function initContactForm() {
-            const form = document.getElementById('contact-form');
-            const messageEl = document.getElementById('contact-form-message');
+            var form = document.getElementById('contact-form');
+            var messageEl = document.getElementById('contact-form-message');
             if (!form) return;
 
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
-                const formData = new FormData(form);
-                const name = String(formData.get('name') || '').trim();
-                const email = String(formData.get('email') || '').trim();
-                const message = String(formData.get('message') || '').trim();
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                var formData = new FormData(form);
+                var name = String(formData.get('name') || '').trim();
+                var email = String(formData.get('email') || '').trim();
+                var message = String(formData.get('message') || '').trim();
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
                 messageEl.classList.remove('hidden', 'success', 'error');
 
                 if (!name || !email || !message) {
-                    messageEl.textContent = '请填写姓名、公司邮件和业务需求简述。';
+                    messageEl.textContent = currentLang === 'en' ? 'Please fill in name, work email, and project brief.' : '请填写姓名、公司邮件和业务需求简述。';
                     messageEl.classList.add('error');
                     return;
                 }
 
                 if (!emailPattern.test(email)) {
-                    messageEl.textContent = '请输入有效的公司邮件地址。';
+                    messageEl.textContent = currentLang === 'en' ? 'Please enter a valid work email.' : '请输入有效的公司邮件地址。';
                     messageEl.classList.add('error');
                     return;
                 }
 
-                const subject = encodeURIComponent('Weiming AI 咨询 - ' + name);
-                const body = encodeURIComponent(
-                    '姓名: ' + name + '\n' +
-                    '公司邮件: ' + email + '\n\n' +
-                    '业务需求:\n' + message
+                var subject = encodeURIComponent((currentLang === 'en' ? 'Weiming AI Inquiry - ' : 'Weiming AI 咨询 - ') + name);
+                var body = encodeURIComponent(
+                    (currentLang === 'en' ? 'Name: ' : '姓名: ') + name + '\n' +
+                    (currentLang === 'en' ? 'Email: ' : '公司邮件: ') + email + '\n\n' +
+                    (currentLang === 'en' ? 'Project Brief:\n' : '业务需求:\n') + message
                 );
 
                 window.location.href = 'mailto:yu@dreamer.to?subject=' + subject + '&body=' + body;
-                messageEl.textContent = '正在打开邮件客户端，请确认发送。若未自动打开，请直接写信至 yu@dreamer.to。';
+                messageEl.textContent = currentLang === 'en' ? 'Opening email client. If it did not open, please send to yu@dreamer.to.' : '正在打开邮件客户端，请确认发送。若未自动打开，请直接写信至 yu@dreamer.to。';
                 messageEl.classList.add('success');
             });
         }
 
+        var productData = {
+            'dtrip': {
+                title: 'DTrip AI',
+                subtitle: { zh: '酒价比价引擎', en: 'Hotel Price Comparison' },
+                icon: 'flight',
+                image: 'assets/product-dtrip.jpg',
+                sections: [
+                    { label: { zh: '业务目标', en: 'Goal' }, text: { zh: '提升旅行决策效率。', en: 'Improve travel decision efficiency.' } },
+                    { label: { zh: '业务判断', en: 'Insight' }, text: { zh: '动态网页价格复杂分散，自动化旨在减少人工跨平台检索与对比成本。', en: 'Dynamic web prices are scattered; automation reduces manual cross-platform search and comparison costs.' } },
+                    { label: { zh: '解决方案', en: 'Solution' }, text: { zh: '构建一套 Cloudflare + Bun 自动化后端，支持 Stagehand 浏览器动作、边缘队列及 Workers AI。持续沉淀价格和用户查询行为。', en: 'Built a Cloudflare + Bun automation backend with Stagehand browser actions, edge queues, and Workers AI. Continuously aggregating price and user query data.' } }
+                ],
+                result: { zh: '减少用户手动比价时间，将动态网页信息转化为可分析数据，建立商业化基础。', en: 'Reduced manual comparison time, transformed dynamic web data into analyzable formats, establishing a commercialization foundation.' },
+                tags: [
+                    { label: 'Bun', type: 'tech' },
+                    { label: 'Hono', type: 'tech' },
+                    { label: 'Cloudflare Workers', type: 'platform' },
+                    { label: 'Stagehand', type: 'ai' }
+                ]
+            },
+            'note': {
+                title: 'Note Weiming',
+                subtitle: { zh: 'AI 原生笔记', en: 'AI-Native Notes' },
+                icon: 'edit_note',
+                image: 'assets/product-note.jpg',
+                sections: [
+                    { label: { zh: '业务目标', en: 'Goal' }, text: { zh: '让笔记从普通文本变成结构化记忆。', en: 'Transform notes from plain text into structured memory.' } },
+                    { label: { zh: '业务判断', en: 'Insight' }, text: { zh: '拒绝简单叠加聊天框，AI 应深埋记录界面之下，实现无感抽取与快速召回。', en: 'Reject simply adding a chat box — AI should be embedded beneath the recording interface for seamless extraction and rapid recall.' } },
+                    { label: { zh: '解决方案', en: 'Solution' }, text: { zh: 'iOS 笔记工作流。形成个人知识管理闭环。', en: 'iOS note-taking workflow forming a personal knowledge management loop.' } }
+                ],
+                result: { zh: '路径 < 400ms，普通新建笔记 0 网络调用，一键召回相关内容，大幅改善个人知识管理体验。', en: 'Response path < 400ms, zero network calls for new notes, one-click related content recall — dramatically improving personal knowledge management.' },
+                tags: [
+                    { label: 'AICore', type: 'ai' },
+                    { label: 'Data', type: 'data' },
+                    { label: 'iOS 原生', type: 'platform' }
+                ]
+            },
+            'promptlift': {
+                title: 'PromptLift',
+                subtitle: { zh: '跨平台 AI 素养产品', en: 'Cross-platform AI Literacy' },
+                icon: 'auto_awesome',
+                image: 'assets/product-promptlift.jpg',
+                sections: [
+                    { label: { zh: '业务目标', en: 'Goal' }, text: { zh: '降低 AI 工具门槛，帮普通用户获得更优输出。', en: 'Lower the barrier to AI tools, helping everyday users achieve better outputs.' } },
+                    { label: { zh: '业务判断', en: 'Insight' }, text: { zh: '用户的痛点在于无法准确表达任务与补充上下文。', en: 'The core pain point is users struggling to accurately describe tasks and provide context.' } },
+                    { label: { zh: '解决方案', en: 'Solution' }, text: { zh: '基于同一套 Hono / Cloudflare 优化 API，多端分发上线 Web、iOS、Android 和微信小程序。通过使用数据持续迭代提示词策略。', en: 'Unified Hono/Cloudflare API with multi-platform distribution across Web, iOS, Android, and WeChat Mini Programs. Continuously iterating prompt strategies based on usage data.' } }
+                ],
+                result: { zh: '提升普通用户使用 AI 的成功率，降低学习成本，验证了一套 AI 能力多端分发的商业路径。', en: 'Improved AI success rate for everyday users, reduced learning costs, and validated a multi-platform AI distribution business model.' },
+                tags: [
+                    { label: 'Hono', type: 'tech' },
+                    { label: 'Cloudflare', type: 'platform' },
+                    { label: 'Prompt Optimization', type: 'ai' }
+                ]
+            },
+            'combinecodes': {
+                title: 'CombineCodes',
+                subtitle: { zh: 'AI 开发者效率产品', en: 'AI Developer Productivity' },
+                icon: 'code',
+                image: 'assets/product-combinecodes.jpg',
+                sections: [
+                    { label: { zh: '业务目标', en: 'Goal' }, text: { zh: '提升代码评审、调试和交接效率。', en: 'Improve code review, debugging, and handoff efficiency.' } },
+                    { label: { zh: '业务判断', en: 'Insight' }, text: { zh: '代码上下文的手动整理与二进制噪音过滤消耗大量非直接价值时间。', en: 'Manual code context extraction and binary noise filtering consume significant non-value-adding time.' } },
+                    { label: { zh: '解决方案', en: 'Solution' }, text: { zh: '开发通用 macOS 应用，自动扫描多仓、过滤噪音，输出适合 AI 阅读的 Plain / XML / Markdown / Claude XML 文件。', en: 'Built a universal macOS app that auto-scans repos, filters noise, and outputs AI-readable Plain/XML/Markdown/Claude XML files.' } }
+                ],
+                result: { zh: '减少整理代码上下文的时间，提升 AI 代码评审和调试质量，降低手工整理成本。', en: 'Reduced code context preparation time, improved AI code review quality, and lowered manual effort.' },
+                tags: [
+                    { label: 'SwiftUI', type: 'tech' },
+                    { label: 'macOS', type: 'platform' },
+                    { label: 'Claude XML', type: 'ai' }
+                ]
+            },
+            'terminal': {
+                title: 'Terminal Weiming',
+                subtitle: { zh: '原生开发者工具', en: 'Native Developer Tools' },
+                icon: 'terminal',
+                image: 'assets/product-terminal.jpg',
+                sections: [
+                    { label: { zh: '业务目标', en: 'Goal' }, text: { zh: '提升移动场景下的远程运维效率与安全性。', en: 'Improve remote ops efficiency and security on mobile.' } },
+                    { label: { zh: '业务判断', en: 'Insight' }, text: { zh: '远程运维涉及多认证与会话观测，移动端工具必须保证便捷与绝对可信。', en: 'Remote ops involve multi-auth and session monitoring — mobile tools must be both convenient and absolutely trustworthy.' } },
+                    { label: { zh: '解决方案', en: 'Solution' }, text: { zh: '开发面向 iOS 的远程优先 SSH 终端，支持 Secure Enclave 认证、known_hosts 校验、交互式 PTY 及生物识别锁。', en: 'Built a remote-first SSH terminal for iOS with Secure Enclave auth, known_hosts verification, interactive PTY, and biometric lock.' } }
+                ],
+                result: { zh: '提升移动远程运维效率，降低配置成本，增强紧急场景下的工程响应能力与入口安全性。', en: 'Improved mobile remote ops efficiency, reduced configuration costs, and enhanced emergency engineering response and entry security.' },
+                tags: [
+                    { label: 'SwiftUI', type: 'tech' },
+                    { label: 'iOS', type: 'platform' },
+                    { label: 'Secure Enclave', type: 'tech' }
+                ]
+            }
+        };
+
+        var tagTypeClass = { tech: 'tag-tech', platform: 'tag-platform', ai: 'tag-ai', data: 'tag-data' };
+
+        function t(obj) {
+            if (!obj) return '';
+            if (typeof obj === 'string') return obj;
+            return obj[currentLang] || obj.zh || '';
+        }
+
+        function renderProductTags(tags) {
+            return tags.map(function (tag) {
+                return '<span class="text-[11px] px-2.5 py-1 font-bold tracking-wide ' + (tagTypeClass[tag.type] || 'tag-tech') + '">' + tag.label + '</span>';
+            }).join('');
+        }
+
+        function initProductGrid() {
+            var grid = document.getElementById('product-grid');
+            if (!grid) return;
+            var ids = ['dtrip', 'note', 'promptlift', 'combinecodes', 'terminal'];
+            var viewLabel = currentLang === 'en' ? 'View Details' : '查看详情';
+            grid.innerHTML = ids.map(function (id) {
+                var p = productData[id];
+                return '<div class="product-card group" onclick="openProductModal(\'' + id + '\')">' +
+                    '<div class="aspect-[4/5] overflow-hidden bg-primary/5 relative">' +
+                    '<img alt="' + p.title + '" class="w-full h-full object-cover absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" src="' + p.image + '" onerror="this.parentElement.innerHTML=\'<div class=flex items-center justify-center h-full><span class=material-symbols-outlined text-5xl text-primary/20>' + p.icon + '</span></div>\'" />' +
+                    '</div>' +
+                    '<div class="p-4 space-y-2">' +
+                    '<div>' +
+                    '<h3 class="font-headline-sm text-base text-primary leading-tight">' + p.title + '</h3>' +
+                    '<p class="text-[11px] text-muted uppercase tracking-widest font-medium mt-0.5">' + t(p.subtitle) + '</p>' +
+                    '</div>' +
+                    '<p class="text-xs text-muted leading-relaxed line-clamp-2">' + t(p.sections[0].text) + '</p>' +
+                    '<div class="flex flex-wrap gap-1 pt-1">' + renderProductTags(p.tags) + '</div>' +
+                    '<div class="flex items-center gap-1.5 text-primary text-[11px] font-bold uppercase tracking-widest pt-1 opacity-0 group-hover:opacity-100 transition-opacity">' +
+                    '<span>' + viewLabel + '</span><span class="material-symbols-outlined text-xs">arrow_forward</span>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+            }).join('');
+        }
+
+        function openProductModal(id) {
+            var data = productData[id];
+            if (!data) return;
+            document.getElementById('product-modal-title').textContent = data.title;
+            document.getElementById('product-modal-subtitle').textContent = t(data.subtitle);
+            var grid = document.getElementById('product-modal-grid');
+            grid.innerHTML = data.sections.map(function (s) {
+                return '<div class="space-y-3">' +
+                    '<h4 class="text-[10px] font-bold text-primary/40 uppercase tracking-wider">' + t(s.label) + '</h4>' +
+                    '<p class="text-sm text-muted leading-relaxed">' + t(s.text) + '</p>' +
+                    '</div>';
+            }).join('');
+            document.getElementById('product-modal-result').textContent = t(data.result);
+            document.getElementById('product-modal-stack').innerHTML = renderProductTags(data.tags);
+            openModal('product-detail-modal');
+        }
+
+        initProductGrid();
         initScrollSpy();
         initMobileMenu();
         initContactForm();
+
+        var currentLang = localStorage.getItem('lang') || 'zh';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.getElementById('lang-label').textContent = lang === 'zh' ? '中文' : 'English';
+            document.getElementById('lang-dropdown').classList.remove('open');
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+            document.querySelectorAll('[data-zh]').forEach(function (el) {
+                var text = el.getAttribute('data-' + lang);
+                if (text) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else {
+                        el.textContent = text;
+                    }
+                }
+            });
+            document.querySelectorAll('[data-zh-html]').forEach(function (el) {
+                var html = el.getAttribute('data-' + lang + '-html');
+                if (html) el.innerHTML = html;
+            });
+            initProductGrid();
+        }
+
+        if (currentLang === 'en') setLang('en');
+
+        document.addEventListener('click', function (e) {
+            if (!document.getElementById('lang-dropdown').contains(e.target)) {
+                document.getElementById('lang-dropdown').classList.remove('open');
+            }
+        });
     </script>
 </body>
 

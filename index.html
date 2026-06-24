@@ -6,7 +6,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Weiming AI | 未名 AI - 领先的企业级 AI 工程专家</title>
     <meta content="未名 AI 致力于帮助企业将 AI 投入转化为可量化的业务结果，通过专业的产品工程能力实现 AI 落地。" name="description" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none'%3E%3Ccircle cx='16' cy='16' r='14' stroke='%231E3A5F' stroke-width='2'/%3E%3Cellipse cx='16' cy='16' rx='6' ry='14' stroke='%232563EB' stroke-width='1.5'/%3E%3Cpath d='M2 16h28M16 2c-3 4-3 24 0 28M16 2c3 4 3 24 0 28' stroke='%231E3A5F' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -702,8 +701,9 @@
             <a class="flex flex-col hover:opacity-80 transition-opacity shrink-0" href="#home">
                 <span class="font-display font-bold tracking-tighter text-primary leading-none text-lg">WEIMING
                     AI</span>
-                <span class="text-[10px] text-muted font-medium tracking-wider mt-1 uppercase">Fuzhou Xunjing
-                    Medical Tech</span>
+                <span class="text-[10px] text-muted font-medium tracking-wider mt-1 uppercase"
+                    data-zh="福大科技园-未名概念验证中心·人工智能TEAM"
+                    data-en="Fuda Keji Yuan-Weiming Gainian Yanzheng Zhongxin · Artificial Intelligence TEAM">福大科技园-未名概念验证中心·人工智能TEAM</span>
             </a>
             <div class="flex items-center gap-3 shrink-0 ml-auto">
                 <a class="hidden lg:flex items-center gap-1.5 text-sm text-muted hover:text-primary transition-colors"
@@ -715,7 +715,7 @@
                     <button onclick="document.getElementById('lang-dropdown').classList.toggle('open')"
                         class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium tracking-wider text-muted hover:text-primary transition-all rounded-sm"
                         id="lang-toggle">
-                        <span class="material-symbols-outlined text-sm">language</span>
+                        <span class="material-symbols-outlined text-sm">translate</span>
                         <span id="lang-label">中文</span>
                     </button>
                     <div class="absolute right-0 top-full mt-1.5 bg-white border border-outline shadow-md rounded-sm opacity-0 invisible transition-all duration-150 min-w-[72px] z-50"
@@ -907,8 +907,11 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center justify-center gap-5 lg:gap-6 order-1 lg:order-2">
-                        <img class="hero-visual-image" src="assets/hero-illustration-v2.svg"
-                            alt="未名 AI 将 AI 工程转化为可衡量业务结果的示意图：代码工程终端、AI 引擎中枢、MEASURABLE ROI +37% 增长图表与 BUSINESS RESULTS 业务指标面板" />
+                        <picture>
+                            <source srcset="assets/above-slogan.webp" type="image/webp" />
+                            <img class="hero-visual-image" src="assets/above-slogan.png"
+                                alt="未名 AI 简约 3D 地球仪与等距立方体插图" />
+                        </picture>
                         <p class="hero-quote text-center font-headline-md text-base lg:text-lg italic tracking-[0]"
                             data-zh-html="&ldquo;让每一行代码，都服务于可衡量的业务增长。&rdquo;"
                             data-en-html="&ldquo;Every line of code serves measurable business growth.&rdquo;">
@@ -1029,7 +1032,7 @@
                     <div class="case-card cursor-pointer group relative overflow-hidden"
                         onclick="openCaseStudyModal('jijiu')">
                         <div class="aspect-[16/10] overflow-hidden bg-primary/5 relative">
-                            <img alt="急救 AI 系统"
+                            <img alt="120 急救指挥中心 AI 调度系统"
                                 class="w-full h-full object-cover absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                                 src="assets/case-jijiu.jpg"
                                 onerror="this.parentElement.innerHTML='<div class=flex items-center justify-center h-full><span class=material-symbols-outlined text-6xl text-primary/20>medical_services</span></div>'" />
@@ -1313,8 +1316,8 @@
         <section class="py-24" id="technical-capabilities">
             <div class="px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
                 <div class="mb-16">
-                    <span class="label-caps block mb-4">Technical Capabilities</span>
-                    <h2 class="heading-section" data-zh="服务案例" data-en="Service Cases">服务案例</h2>
+                    <span class="label-caps block mb-4">Service Types</span>
+                    <h2 class="heading-section" data-zh="服务类型" data-en="Service Types">服务类型</h2>
                     <p class="text-sm font-medium text-muted mt-3" data-zh="我们的技术能力，服务于业务结果"
                         data-en="Our Technical Capabilities, Serving Business Results">我们的技术能力，服务于业务结果</p>
                 </div>

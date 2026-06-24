@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="720" height="480" viewBox="0 0 720 480" fill="none" 
+  xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="heroTitle heroDesc">
+  <title id="heroTitle">Weiming AI - Engineering to Business Results</title>
+  <desc id="heroDesc">Clean illustration of AI engineering flowing into measurable ROI and business metrics</desc>
+  <defs>
+    <style>
+      .lbl{fill:#64748b;font-family:"Geist","Inter",sans-serif;font-size:9px;font-weight:600;letter-spacing:.14em}
+      .lbl-dark{fill:#93c5fd;font-family:"Geist","Inter",sans-serif;font-size:9px;font-weight:600;letter-spacing:.12em}
+      .mono{fill:#cbd5e1;font-family:"SFMono-Regular","Consolas",monospace;font-size:11px;font-weight:400}
+      .metric{fill:#1e3a5f;font-family:"Geist","Inter",sans-serif;font-size:28px;font-weight:700;letter-spacing:-.03em}
+      .metric-sub{fill:#64748b;font-family:"Geist","Inter",sans-serif;font-size:10px;font-weight:500}
+      .kpi-val{fill:#1e3a5f;font-family:"Geist","Inter",sans-serif;font-size:12px;font-weight:600}
+      .kpi-val-pos{fill:#2563eb;font-family:"Geist","Inter",sans-serif;font-size:12px;font-weight:600}
+      .kpi-lbl{fill:#64748b;font-family:"Geist","Inter",sans-serif;font-size:11px;font-weight:500}
+    </style>
+    <linearGradient id="term-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="chart-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2563eb" stop-opacity=".14"/>
+      <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1e3a5f" flood-opacity=".07"/>
+    </filter>
+  </defs>
+  <!-- Backdrop plate -->
+  <rect x="16" y="96" width="688" height="272" rx="16" fill="#fff" fill-opacity=".55" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- Connectors (center axis y=232) -->
+  <line x1="252" y1="232" x2="314" y2="232" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5 5" stroke-linecap="round"/>
+  <line x1="406" y1="232" x2="468" y2="232" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5 5" stroke-linecap="round"/>
+  <circle cx="314" cy="232" r="4" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+  <circle cx="406" cy="232" r="4" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+  <!-- Terminal (h=256) -->
+  <g filter="url(#soft)">
+    <rect x="36" y="104" width="216" height="256" rx="10" fill="url(#term-bg)"/>
+    <rect x="36" y="104" width="216" height="36" rx="10" fill="#0f172a" fill-opacity=".35"/>
+    <rect x="36" y="128" width="216" height="12" fill="url(#term-bg)"/>
+    <circle cx="56" cy="122" r="4" fill="#64748b"/>
+    <circle cx="72" cy="122" r="4" fill="#64748b"/>
+    <circle cx="88" cy="122" r="4" fill="#64748b"/>
+    <text class="lbl-dark" x="144" y="126" text-anchor="middle">AI ENGINEERING</text>
+  </g>
+  <text class="mono" x="56" y="178">const ai = buildFor(workflow)</text>
+  <text class="mono" x="56" y="204">measureROI(revenue, cost)</text>
+  <text class="mono" x="56" y="230">return deploy(ai)</text>
+  <rect x="56" y="254" width="76" height="24" rx="5" fill="#2563eb" fill-opacity=".2" stroke="#2563eb" stroke-width="1" stroke-opacity=".35"/>
+  <text class="lbl-dark" x="94" y="270" text-anchor="middle">Workflow</text>
+  <!-- AI hub (center 360,232) -->
+  <circle cx="360" cy="232" r="48" fill="#eff6ff" fill-opacity=".6"/>
+  <circle cx="360" cy="232" r="38" fill="#fff" stroke="#2563eb" stroke-width="1.5" stroke-opacity=".35"/>
+  <text fill="#1e3a5f" font-family="Geist,Inter,sans-serif" font-size="22" font-weight="700" x="360" y="239" text-anchor="middle">AI</text>
+  <!-- Metrics panel (h=256) -->
+  <g filter="url(#soft)">
+    <rect x="468" y="104" width="216" height="256" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+    <!-- Header (36px) -->
+    <rect x="468" y="104" width="216" height="36" rx="10" fill="#f8fafc"/>
+    <rect x="468" y="128" width="216" height="12" fill="#fff"/>
+    <text class="lbl" x="488" y="126">MEASURABLE ROI</text>
+    <!-- Chart zone (y=144, h=48) -->
+    <rect x="488" y="144" width="176" height="48" rx="6" fill="#f8fafc"/>
+    <line x1="488" y1="184" x2="664" y2="184" stroke="#e2e8f0" stroke-width="1"/>
+    <path d="M500 188 L524 176 L548 182 L572 166 L596 172 L620 156 L652 160" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M500 188 L524 176 L548 182 L572 166 L596 172 L620 156 L652 160 L652 184 L500 184 Z" fill="url(#chart-fill)"/>
+    <circle cx="620" cy="156" r="4" fill="#2563eb"/>
+    <!-- Metric block -->
+    <text class="metric" x="488" y="216">+37%</text>
+    <text class="metric-sub" x="488" y="234">Monthly Growth</text>
+    <!-- Divider -->
+    <line x1="488" y1="248" x2="664" y2="248" stroke="#f1f5f9" stroke-width="1"/>
+    <!-- KPI zone -->
+    <text class="lbl" x="488" y="260">BUSINESS RESULTS</text>
+    <text class="kpi-lbl" x="488" y="280">Revenue</text>
+    <text class="kpi-val-pos" x="664" y="280" text-anchor="end">+24%</text>
+    <text class="kpi-lbl" x="488" y="300">Efficiency</text>
+    <text class="kpi-val-pos" x="664" y="300" text-anchor="end">+52%</text>
+    <text class="kpi-lbl" x="488" y="320">Cost Save</text>
+    <text class="kpi-val" x="664" y="320" text-anchor="end">-18%</text>
+  </g>
+</svg>
